@@ -32,11 +32,18 @@ public class DeleteAppointmentCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * @param targetIndex of the person in the filtered person list whose appointment is to be deleted
+     */
     public DeleteAppointmentCommand(Index targetIndex) {
         requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
     }
 
+    /**
+     * Executes the delete appointment command by removing the appointment of the person
+     * at the specified {@code targetIndex} in the filtered person list.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
