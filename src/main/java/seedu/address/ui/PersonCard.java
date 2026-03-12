@@ -62,8 +62,9 @@ public class PersonCard extends UiPart<Region> {
                     appointment.setText(appt.toString());
                     appointment.setVisible(true);
                     appointment.setManaged(true);
-                }, () -> { appointment.setText("No appointment scheduled");
-            }
+                }, () -> {
+                    appointment.setText("No appointment scheduled");
+                }
         );
     }
 }
