@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.patient.Address;
+import seedu.address.model.patient.Appointment;
 import seedu.address.model.patient.Email;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
@@ -12,7 +13,7 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
- * A utility class to help with building Person objects.
+ * A utility class to help with building Patient objects.
  */
 public class PatientBuilder {
 
@@ -20,15 +21,19 @@ public class PatientBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_STARTTIME = "12-03-2026 14:00";
+    public static final String DEFAULT_DURATION = "30";
+    public static final String DEFAULT_NOTE = "Routine Checkup";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
     private Set<Tag> tags;
+    private Appointment appointment;
 
     /**
-     * Creates a {@code PersonBuilder} with the default details.
+     * Creates a {@code PatientBuilder} with the default details.
      */
     public PatientBuilder() {
         name = new Name(DEFAULT_NAME);
@@ -36,10 +41,11 @@ public class PatientBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+        appointment = new Appointment(DEFAULT_STARTTIME, Integer.parseInt(DEFAULT_DURATION), DEFAULT_NOTE);
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code personToCopy}.
+     * Initializes the PatientBuilder with the data of {@code PatientToCopy}.
      */
     public PatientBuilder(Patient patientToCopy) {
         name = patientToCopy.getName();
@@ -47,10 +53,11 @@ public class PatientBuilder {
         email = patientToCopy.getEmail();
         address = patientToCopy.getAddress();
         tags = new HashSet<>(patientToCopy.getTags());
+        appointment = patientToCopy.getAppointment().orElse(null);
     }
 
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Sets the {@code Name} of the {@code Patient} that we are building.
      */
     public PatientBuilder withName(String name) {
         this.name = new Name(name);
@@ -58,7 +65,7 @@ public class PatientBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Patient} that we are building.
      */
     public PatientBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
@@ -66,7 +73,7 @@ public class PatientBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
+     * Sets the {@code Address} of the {@code Patient} that we are building.
      */
     public PatientBuilder withAddress(String address) {
         this.address = new Address(address);
@@ -74,7 +81,7 @@ public class PatientBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Person} that we are building.
+     * Sets the {@code Phone} of the {@code Patient} that we are building.
      */
     public PatientBuilder withPhone(String phone) {
         this.phone = new Phone(phone);
@@ -82,10 +89,18 @@ public class PatientBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
+     * Sets the {@code Email} of the {@code Patient} that we are building.
      */
     public PatientBuilder withEmail(String email) {
         this.email = new Email(email);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Email} of the {@code Patient} that we are building.
+     */
+    public PatientBuilder withAppointment(Appointment appointment) {
+        this.appointment = appointment;
         return this;
     }
 
