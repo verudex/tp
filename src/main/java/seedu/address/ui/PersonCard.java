@@ -6,9 +6,9 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.patient.Patient;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.Allergy;
 import seedu.address.model.tag.MedicalCondition;
+import seedu.address.model.tag.Tag;
 
 /**
  * A UI component that displays information of a {@code Person}.
