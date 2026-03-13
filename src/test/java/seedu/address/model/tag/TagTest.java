@@ -1,3 +1,5 @@
+package seedu.address.model.tag;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.tag.GeneralTag;
