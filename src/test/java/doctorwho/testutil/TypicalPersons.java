@@ -19,7 +19,7 @@ import doctorwho.model.AddressBook;
 import doctorwho.model.patient.Patient;
 
 /**
- * A utility class containing a list of {@code Person} objects to be used in tests.
+ * A utility class containing a list of {@code Patient} objects to be used in tests.
  */
 public class TypicalPersons {
 
@@ -62,7 +62,7 @@ public class TypicalPersons {
     } // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code AddressBook} with all the typical patients.
      */
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
