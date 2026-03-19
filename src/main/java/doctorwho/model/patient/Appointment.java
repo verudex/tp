@@ -27,7 +27,7 @@ public class Appointment {
 
     public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
-    public static final String VALIDATION_REGEX = "[^\\x00-\\x1F]*"; // Example: disallow invisible control characters
+    public static final String VALIDATION_REGEX = "[^\\x00-\\x1F]*";
     public static final int MAX_LENGTH = 500;
 
     private final LocalDateTime startTime;
@@ -44,7 +44,8 @@ public class Appointment {
     public Appointment(String startTimeStr, int duration, String note) {
         requireAllNonNull(startTimeStr, duration);
         checkArgument(isValidDateTime(startTimeStr), STARTTIME_CONSTRAINTS);
-        checkArgument(duration > 0, DURATION_CONSTRAINTS);
+        checkArgument(duration > 0 && duration < Integer.MAX_VALUE, DURATION_CONSTRAINTS);
+        checkArgument(isValidNote(note), NOTE_CONSTRAINTS);
 
         this.startTime = LocalDateTime.parse(startTimeStr, FORMATTER);
         this.duration = duration;

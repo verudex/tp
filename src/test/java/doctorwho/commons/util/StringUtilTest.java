@@ -16,33 +16,33 @@ public class StringUtilTest {
     public void isNonZeroUnsignedInteger() {
 
         // EP: empty strings
-        assertFalse(StringUtil.isNonZeroNonInfiniteUnsignedInteger("")); // Boundary value
-        assertFalse(StringUtil.isNonZeroNonInfiniteUnsignedInteger("  "));
+        assertFalse(StringUtil.isNonZeroUnsignedInteger("")); // Boundary value
+        assertFalse(StringUtil.isNonZeroUnsignedInteger("  "));
 
         // EP: not a number
-        assertFalse(StringUtil.isNonZeroNonInfiniteUnsignedInteger("a"));
-        assertFalse(StringUtil.isNonZeroNonInfiniteUnsignedInteger("aaa"));
+        assertFalse(StringUtil.isNonZeroUnsignedInteger("a"));
+        assertFalse(StringUtil.isNonZeroUnsignedInteger("aaa"));
 
         // EP: zero
-        assertFalse(StringUtil.isNonZeroNonInfiniteUnsignedInteger("0"));
+        assertFalse(StringUtil.isNonZeroUnsignedInteger("0"));
 
         // EP: zero as prefix
-        assertTrue(StringUtil.isNonZeroNonInfiniteUnsignedInteger("01"));
+        assertTrue(StringUtil.isNonZeroUnsignedInteger("01"));
 
         // EP: signed numbers
-        assertFalse(StringUtil.isNonZeroNonInfiniteUnsignedInteger("-1"));
-        assertFalse(StringUtil.isNonZeroNonInfiniteUnsignedInteger("+1"));
+        assertFalse(StringUtil.isNonZeroUnsignedInteger("-1"));
+        assertFalse(StringUtil.isNonZeroUnsignedInteger("+1"));
 
         // EP: numbers with white space
-        assertFalse(StringUtil.isNonZeroNonInfiniteUnsignedInteger(" 10 ")); // Leading/trailing spaces
-        assertFalse(StringUtil.isNonZeroNonInfiniteUnsignedInteger("1 0")); // Spaces in the middle
+        assertFalse(StringUtil.isNonZeroUnsignedInteger(" 10 ")); // Leading/trailing spaces
+        assertFalse(StringUtil.isNonZeroUnsignedInteger("1 0")); // Spaces in the middle
 
         // EP: number larger than Integer.MAX_VALUE
-        assertFalse(StringUtil.isNonZeroNonInfiniteUnsignedInteger(Long.toString(Integer.MAX_VALUE + 1)));
+        assertFalse(StringUtil.isNonZeroUnsignedInteger(Long.toString(Integer.MAX_VALUE + 1)));
 
         // EP: valid numbers, should return true
-        assertTrue(StringUtil.isNonZeroNonInfiniteUnsignedInteger("1")); // Boundary value
-        assertTrue(StringUtil.isNonZeroNonInfiniteUnsignedInteger("10"));
+        assertTrue(StringUtil.isNonZeroUnsignedInteger("1")); // Boundary value
+        assertTrue(StringUtil.isNonZeroUnsignedInteger("10"));
     }
 
 
