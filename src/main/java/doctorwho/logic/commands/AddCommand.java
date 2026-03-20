@@ -28,7 +28,7 @@ public class AddCommand extends Command {
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
             + "[" + PREFIX_ALLERGY + "ALLERGY]... "
-            + "[" + PREFIX_CONDITION + "Condition]...\n"
+            + "[" + PREFIX_CONDITION + "CONDITION]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
@@ -43,7 +43,7 @@ public class AddCommand extends Command {
     private final Patient toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Patient}
      */
     public AddCommand(Patient patient) {
         requireNonNull(patient);
