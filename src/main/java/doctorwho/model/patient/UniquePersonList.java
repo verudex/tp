@@ -21,7 +21,7 @@ import javafx.collections.ObservableList;
  * <p>
  * Supports a minimal set of list operations.
  *
- * @see Patient#isSamePerson(Patient)
+ * @see Patient#isSamePatient(Patient)
  */
 public class UniquePersonList implements Iterable<Patient> {
 
@@ -34,7 +34,7 @@ public class UniquePersonList implements Iterable<Patient> {
      */
     public boolean contains(Patient toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSamePerson);
+        return internalList.stream().anyMatch(toCheck::isSamePatient);
     }
 
     /**
@@ -62,7 +62,7 @@ public class UniquePersonList implements Iterable<Patient> {
             throw new PersonNotFoundException();
         }
 
-        if (!target.isSamePerson(editedPatient) && contains(editedPatient)) {
+        if (!target.isSamePatient(editedPatient) && contains(editedPatient)) {
             throw new DuplicatePersonException();
         }
 
@@ -141,7 +141,7 @@ public class UniquePersonList implements Iterable<Patient> {
     private boolean personsAreUnique(List<Patient> patients) {
         for (int i = 0; i < patients.size() - 1; i++) {
             for (int j = i + 1; j < patients.size(); j++) {
-                if (patients.get(i).isSamePerson(patients.get(j))) {
+                if (patients.get(i).isSamePatient(patients.get(j))) {
                     return false;
                 }
             }

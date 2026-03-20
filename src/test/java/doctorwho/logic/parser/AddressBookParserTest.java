@@ -17,7 +17,7 @@ import doctorwho.logic.commands.AddCommand;
 import doctorwho.logic.commands.ClearCommand;
 import doctorwho.logic.commands.DeleteCommand;
 import doctorwho.logic.commands.EditCommand;
-import doctorwho.logic.commands.EditCommand.EditPersonDescriptor;
+import doctorwho.logic.commands.EditCommand.EditPatientDescriptor;
 import doctorwho.logic.commands.ExitCommand;
 import doctorwho.logic.commands.FindCommand;
 import doctorwho.logic.commands.HelpCommand;
@@ -56,7 +56,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_edit() throws Exception {
         Patient patient = new PatientBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(patient).build();
+        EditPatientDescriptor descriptor = new EditPersonDescriptorBuilder(patient).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);

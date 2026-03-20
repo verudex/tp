@@ -1,6 +1,6 @@
 package doctorwho.logic.commands;
 
-import static doctorwho.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static doctorwho.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 import static java.util.Objects.requireNonNull;
 
 import doctorwho.model.Model;
@@ -18,7 +18,7 @@ public class ListCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
