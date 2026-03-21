@@ -71,16 +71,24 @@ public class Patient {
         return Collections.unmodifiableSet(tags);
     }
 
+    /**
+     * Returns an immutable set of allergies, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
     public Set<Tag> getAllergies() {
-        return tags.stream()
-                .filter(t -> t instanceof Allergy)
-                .collect(Collectors.toSet());
+        return Collections.unmodifiableSet(tags.stream()
+            .filter(t -> t instanceof Allergy)
+            .collect(Collectors.toSet()));
     }
 
+    /**
+     * Returns an immutable set of conditions, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
     public Set<Tag> getConditions() {
-        return tags.stream()
-                .filter(t -> t instanceof Condition)
-                .collect(Collectors.toSet());
+        return Collections.unmodifiableSet(tags.stream()
+            .filter(t -> t instanceof Condition)
+            .collect(Collectors.toSet()));
     }
 
     public Optional<Appointment> getAppointment() {

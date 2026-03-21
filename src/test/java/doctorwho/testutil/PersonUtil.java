@@ -17,7 +17,7 @@ import doctorwho.model.tag.Condition;
 import doctorwho.model.tag.Tag;
 
 /**
- * A utility class for Person.
+ * A utility class containing helper methods for building command strings from {@code Patient} objects.
  */
 public class PersonUtil {
 

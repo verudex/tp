@@ -1,10 +1,6 @@
 package doctorwho.model.patient;
 
-import static doctorwho.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static doctorwho.logic.commands.CommandTestUtil.VALID_ALLERGY_IBUPROFEN;
-import static doctorwho.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static doctorwho.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static doctorwho.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static doctorwho.logic.commands.CommandTestUtil.*;
 import static doctorwho.testutil.Assert.assertThrows;
 import static doctorwho.testutil.TypicalPersons.ALICE;
 import static doctorwho.testutil.TypicalPersons.BOB;
@@ -85,8 +81,29 @@ public class PatientTest {
         editedAlice = new PatientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different tags -> returns false
+        // different allergies -> returns false
         editedAlice = new PatientBuilder(ALICE).withAllergies(VALID_ALLERGY_IBUPROFEN).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // same allergies -> returns true
+        Patient patientWithAllergies = new PatientBuilder(ALICE).withAllergies(VALID_ALLERGY_IBUPROFEN).build();
+        Patient patientWithSameAllergies = new PatientBuilder(ALICE).withAllergies(VALID_ALLERGY_IBUPROFEN).build();
+        assertTrue(patientWithAllergies.equals(patientWithSameAllergies));
+
+        // same conditions -> returns true
+        Patient patientWithConditions = new PatientBuilder(ALICE).withConditions(VALID_CONDITION_DIABETES).build();
+        Patient patientWithSameConditions = new PatientBuilder(ALICE).withConditions(VALID_CONDITION_DIABETES).build();
+        assertTrue(patientWithConditions.equals(patientWithSameConditions));
+
+        // same allergies and conditions -> returns true
+        Patient patientWithBoth = new PatientBuilder(ALICE).withAllergies(VALID_ALLERGY_IBUPROFEN)
+            .withConditions(VALID_CONDITION_DIABETES).build();
+        Patient patientWithSameBoth = new PatientBuilder(ALICE).withAllergies(VALID_ALLERGY_IBUPROFEN)
+            .withConditions(VALID_CONDITION_DIABETES).build();
+        assertTrue(patientWithBoth.equals(patientWithSameBoth));
+
+        // different conditions -> returns false
+        editedAlice = new PatientBuilder(ALICE).withConditions(VALID_CONDITION_HYPERTENSION).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 

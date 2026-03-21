@@ -98,8 +98,8 @@ public class EditPersonDescriptorBuilder {
      * {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withConditions(String... conditions) {
-        Set<Tag> conditionset = Stream.of(conditions).map(Condition::new).collect(Collectors.toSet());
-        descriptor.setConditions(conditionset);
+        Set<Tag> conditionSet = Stream.of(conditions).map(Condition::new).collect(Collectors.toSet());
+        descriptor.setConditions(conditionSet);
         return this;
     }
 

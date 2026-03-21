@@ -1,6 +1,7 @@
 package doctorwho.testutil;
 
 import java.util.Arrays;
+import java.util.stream.Collectors;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -91,7 +92,7 @@ public class PatientBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Patient} that we are building.
+     * Sets the {@code Appointment} of the {@code Patient} that we are building.
      */
     public PatientBuilder withAppointment(Appointment appointment) {
         this.appointment = appointment;
@@ -99,26 +100,28 @@ public class PatientBuilder {
     }
 
     /**
-     * Parses the {@code allergies} into a {@code Set<Allergy>}
+     * Parses the {@code allergies} into a {@code Set<Allergy>} and sets it to the {@code Patient}
+     * that we are building. Replaces any existing allergies.
      */
     public PatientBuilder withAllergies(String... allergies) {
         this.tags.removeIf(t -> t instanceof Allergy);
         Set<Tag> allergySet = Arrays.stream(allergies)
-                .map(Allergy::new)
-                .collect(java.util.stream.Collectors.toSet());
+            .map(Allergy::new)
+            .collect(Collectors.toSet());
         this.tags.addAll(allergySet);
         return this;
     }
 
     /**
-     * Parses the {@code conditions} into a {@code Set<Condition>}
+     * Parses the {@code conditions} into a {@code Set<Condition>} and sets it to the {@code Patient}
+     * that we are building. Replaces any existing conditions.
      */
     public PatientBuilder withConditions(String... conditions) {
         this.tags.removeIf(t -> t instanceof Condition);
-        Set<Tag> conditionset = Arrays.stream(conditions)
-                .map(Condition::new)
-                .collect(java.util.stream.Collectors.toSet());
-        this.tags.addAll(conditionset);
+        Set<Tag> conditionSet = Arrays.stream(conditions)
+            .map(Condition::new)
+            .collect(Collectors.toSet());
+        this.tags.addAll(conditionSet);
         return this;
     }
 

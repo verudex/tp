@@ -103,7 +103,6 @@ public class AddCommandIntegrationTest {
             expectedModel);
     }
 
-
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Patient patientInList = model.getAddressBook().getPersonList().get(0);

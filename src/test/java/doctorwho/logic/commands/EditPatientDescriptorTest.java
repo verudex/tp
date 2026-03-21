@@ -5,15 +5,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
 import doctorwho.logic.commands.EditCommand.EditPersonDescriptor;
 import doctorwho.model.tag.Allergy;
 import doctorwho.model.tag.Condition;
 import doctorwho.testutil.EditPersonDescriptorBuilder;
-
-import java.util.Set;
-
 public class EditPatientDescriptorTest {
 
     @Test
@@ -32,10 +31,8 @@ public class EditPatientDescriptorTest {
 
     @Test
     public void copyConstructor_copiesAllergiesAndConditions() {
-        EditPersonDescriptor original = new EditPersonDescriptorBuilder()
-            .withAllergies(VALID_ALLERGY_ASPIRIN)
-            .withConditions(VALID_CONDITION_DIABETES)
-            .build();
+        EditPersonDescriptor original = new EditPersonDescriptorBuilder().withAllergies(VALID_ALLERGY_ASPIRIN)
+            .withConditions(VALID_CONDITION_DIABETES).build();
         EditPersonDescriptor copy = new EditPersonDescriptor(original);
 
         assertEquals(original.getAllergies(), copy.getAllergies());
@@ -83,7 +80,6 @@ public class EditPatientDescriptorTest {
         // different conditions -> returns false
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withConditions(VALID_CONDITION_DIABETES).build();
         assertFalse(DESC_AMY.equals(editedAmy));
-
     }
 
     @Test

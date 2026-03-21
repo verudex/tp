@@ -117,7 +117,7 @@ public class EditCommandParserTest {
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_PERSON;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + ALLERGY_DESC_IBUPROFEN
-                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + ALLERGY_DESC_ASPIRIN + CONDITION_DESC_DIABETES;;
+                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + ALLERGY_DESC_ASPIRIN + CONDITION_DESC_DIABETES;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
             .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
@@ -173,7 +173,7 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        //condition
+        // condition
         userInput = targetIndex.getOneBased() + CONDITION_DESC_DIABETES;
         descriptor = new EditPersonDescriptorBuilder().withConditions(VALID_CONDITION_DIABETES).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
@@ -212,17 +212,9 @@ public class EditCommandParserTest {
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS));
     }
 
-    @Test
-    public void parse_resetTags_success() {
-        Index targetIndex = INDEX_THIRD_PERSON;
-        String userInput = targetIndex.getOneBased() + TAG_EMPTY;
-
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withAllergies().build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
-
-        assertParseSuccess(parser, userInput, expectedCommand);
-    }
-
+    /**
+     * Tests that a single allergy field is correctly parsed into an edit command.
+     */
     @Test
     public void parse_allergyFieldSpecified_success() {
         Index targetIndex = INDEX_FIRST_PERSON;
@@ -235,6 +227,9 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
+    /**
+     * Tests that a single condition field is correctly parsed into an edit command.
+     */
     @Test
     public void parse_conditionFieldSpecified_success() {
         Index targetIndex = INDEX_FIRST_PERSON;
@@ -247,6 +242,9 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
+    /**
+     * Tests that multiple allergy fields are correctly parsed into an edit command.
+     */
     @Test
     public void parse_multipleAllergiesSpecified_success() {
         Index targetIndex = INDEX_FIRST_PERSON;
@@ -259,16 +257,25 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
+    /**
+     * Tests that an invalid allergy value results in a parse failure.
+     */
     @Test
     public void parse_invalidAllergyValue_failure() {
         assertParseFailure(parser, "1" + INVALID_ALLERGY_DESC, Tag.MESSAGE_CONSTRAINTS);
     }
 
+    /**
+     * Tests that an invalid condition value results in a parse failure.
+     */
     @Test
     public void parse_invalidConditionValue_failure() {
         assertParseFailure(parser, "1" + INVALID_CONDITION_DESC, Tag.MESSAGE_CONSTRAINTS);
     }
 
+    /**
+     * Tests that an empty allergy prefix clears all existing allergies.
+     */
     @Test
     public void parse_resetAllergies_success() {
         Index targetIndex = INDEX_THIRD_PERSON;
@@ -280,6 +287,9 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
+    /**
+     * Tests that an empty condition prefix clears all existing conditions.
+     */
     @Test
     public void parse_resetConditions_success() {
         Index targetIndex = INDEX_THIRD_PERSON;
@@ -291,6 +301,9 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
+    /**
+     * Tests that multiple condition fields are correctly parsed into an edit command.
+     */
     @Test
     public void parse_multipleConditionsSpecified_success() {
         Index targetIndex = INDEX_FIRST_PERSON;
@@ -303,6 +316,9 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
+    /**
+     * Tests that both allergy and condition fields are correctly parsed into an edit command.
+     */
     @Test
     public void parse_allergyAndConditionSpecified_success() {
         Index targetIndex = INDEX_FIRST_PERSON;

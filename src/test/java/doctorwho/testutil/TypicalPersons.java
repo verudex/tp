@@ -27,17 +27,17 @@ import doctorwho.model.patient.Patient;
 public class TypicalPersons {
 
     public static final Patient ALICE = new PatientBuilder().withName("Alice Pauline")
-            .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withPhone("94351253")
-            .withAllergies(VALID_ALLERGY_ASPIRIN).withConditions(VALID_CONDITION_DIABETES).build();
+        .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
+        .withPhone("94351253")
+        .withAllergies(VALID_ALLERGY_ASPIRIN).withConditions(VALID_CONDITION_DIABETES).build();
     public static final Patient BENSON = new PatientBuilder().withName("Benson Meier")
-            .withAddress("311, Clementi Ave 2, #02-25")
-            .withEmail("johnd@example.com").withPhone("98765432")
-            .withAllergies(VALID_ALLERGY_IBUPROFEN, VALID_ALLERGY_ASPIRIN).build();
+        .withAddress("311, Clementi Ave 2, #02-25")
+        .withEmail("johnd@example.com").withPhone("98765432")
+        .withAllergies(VALID_ALLERGY_IBUPROFEN, VALID_ALLERGY_ASPIRIN).build();
     public static final Patient CARL = new PatientBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withAddress("wall street").withConditions(VALID_CONDITION_ASTHMA).build();
+        .withEmail("heinz@example.com").withAddress("wall street").withConditions(VALID_CONDITION_ASTHMA).build();
     public static final Patient DANIEL = new PatientBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withAddress("10th street").withAllergies(VALID_ALLERGY_IBUPROFEN)
+        .withEmail("cornelia@example.com").withAddress("10th street").withAllergies(VALID_ALLERGY_IBUPROFEN)
         .build();
     public static final Patient ELLE = new PatientBuilder().withName("Elle Meyer").withPhone("9482224")
         .withEmail("werner@example.com").withAddress("michegan ave").build();
@@ -79,6 +79,9 @@ public class TypicalPersons {
         return ab;
     }
 
+    /**
+     * Returns a list of all typical patients.
+     */
     public static List<Patient> getTypicalPersons() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }

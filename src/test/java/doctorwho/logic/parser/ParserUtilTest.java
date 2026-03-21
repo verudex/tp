@@ -239,7 +239,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseConditions_collectionWithValidTags_returnsConditionSet() throws Exception {
+    public void parseConditions_collectionWithValidTags_returnsconditionSet() throws Exception {
         Set<Condition> expected = new HashSet<>(Arrays.asList(
             new Condition(VALID_CONDITION_2), new Condition("asthma")));
         assertEquals(expected, ParserUtil.parseConditions(

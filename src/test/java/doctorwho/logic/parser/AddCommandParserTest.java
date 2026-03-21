@@ -70,7 +70,7 @@ public class AddCommandParserTest {
                 + ALLERGY_DESC_IBUPROFEN,
             new AddCommand(expectedPatientMultipleAllergies));
 
-        //test with condition only
+        // test with condition only
         Patient expectedPatientConditionOnly = new PatientBuilder(BOB).withAllergies()
             .withConditions(VALID_CONDITION_HYPERTENSION).build();
         assertParseSuccess(parser,
@@ -86,10 +86,8 @@ public class AddCommandParserTest {
             new AddCommand(expectedPatientMultipleConditions));
 
         // allergy and condition test
-        Patient expectedPatientWithBoth = new PatientBuilder(BOB)
-                .withAllergies(VALID_ALLERGY_IBUPROFEN)
-                .withConditions(VALID_CONDITION_HYPERTENSION)
-                .build();
+        Patient expectedPatientWithBoth = new PatientBuilder(BOB).withAllergies(VALID_ALLERGY_IBUPROFEN)
+            .withConditions(VALID_CONDITION_HYPERTENSION).build();
         assertParseSuccess(parser,
             NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + ALLERGY_DESC_IBUPROFEN
                 + CONDITION_DESC_HYPERTENSION,
