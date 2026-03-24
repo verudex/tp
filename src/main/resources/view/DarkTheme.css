@@ -395,8 +395,7 @@
 /* Header text styling */
 .detail-header-section .cell_big_label {
     -fx-text-fill: white;
-    -fx-font-size: 26px;
-    -fx-font-weight: bold;
+    -fx-font-size: 32px;
     -fx-padding: 0 5 5 0;
 }
 

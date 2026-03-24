@@ -418,7 +418,6 @@
 .detail-header-section .cell_big_label {
     -fx-text-fill: #1a1a1a;
     -fx-font-size: 32px;
-    /*-fx-font-weight: bold;*/
     -fx-padding: 0 5 5 0;
 }
 

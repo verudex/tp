@@ -57,13 +57,13 @@
                     </HBox>
 
                     <VBox spacing="5" alignment="TOP_LEFT" styleClass="cell_small_label_container">
-                        <Label text="Medical Conditions:" styleClass="label-bright"/>
-                        <FlowPane fx:id="conditions" hgap="5" vgap="5" />
+                        <Label text="Allergies:" styleClass="label-bright"/>
+                        <FlowPane fx:id="allergies" hgap="5" vgap="5" />
                     </VBox>
 
                     <VBox spacing="5" alignment="TOP_LEFT" styleClass="cell_small_label_container">
-                        <Label text="Allergies:" styleClass="label-bright"/>
-                        <FlowPane fx:id="allergies" hgap="5" vgap="5" />
+                        <Label text="Medical Conditions:" styleClass="label-bright"/>
+                        <FlowPane fx:id="conditions" hgap="5" vgap="5" />
                     </VBox>
                 </VBox>
 
