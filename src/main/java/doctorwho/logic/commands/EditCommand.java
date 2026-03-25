@@ -21,6 +21,7 @@ import doctorwho.commons.core.index.Index;
 import doctorwho.commons.util.CollectionUtil;
 import doctorwho.commons.util.ToStringBuilder;
 import doctorwho.logic.Messages;
+import doctorwho.logic.commands.EditCommand.EditPatientDescriptor;
 import doctorwho.logic.commands.exceptions.CommandException;
 import doctorwho.model.Model;
 import doctorwho.model.patient.Address;
@@ -58,18 +59,18 @@ public class EditCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PATIENT = "This patient already exists in the address book.";
 
     private final Index index;
-    private final EditPatientDescriptor EditPatientDescriptor;
+    private final EditPatientDescriptor editPatientDescriptor;
 
     /**
-     * @param index                of the patient in the filtered patient list to edit
-     * @param EditPatientDescriptor details to edit the patient with
+     * @param index                 of the patient in the filtered patient list to edit
+     * @param editPatientDescriptor details to edit the patient with
      */
-    public EditCommand(Index index, EditPatientDescriptor EditPatientDescriptor) {
+    public EditCommand(Index index, EditPatientDescriptor editPatientDescriptor) {
         requireNonNull(index);
-        requireNonNull(EditPatientDescriptor);
+        requireNonNull(editPatientDescriptor);
 
         this.index = index;
-        this.EditPatientDescriptor = new EditPatientDescriptor(EditPatientDescriptor);
+        this.editPatientDescriptor = new EditPatientDescriptor(editPatientDescriptor);
     }
 
     @Override
@@ -95,15 +96,15 @@ public class EditCommand extends Command {
 
     /**
      * Creates and returns a {@code Patient} with the details of {@code PatientToEdit}
-     * edited with {@code EditPatientDescriptor}.
+     * edited with {@code editPatientDescriptor}.
      */
-    private static Patient createEditedPatient(Patient patientToEdit, EditPatientDescriptor EditPatientDescriptor) {
+    private static Patient createEditedPatient(Patient patientToEdit, EditPatientDescriptor editPatientDescriptor) {
         assert patientToEdit != null;
 
-        Name updatedName = EditPatientDescriptor.getName().orElse(patientToEdit.getName());
-        Phone updatedPhone = EditPatientDescriptor.getPhone().orElse(patientToEdit.getPhone());
-        Email updatedEmail = EditPatientDescriptor.getEmail().orElse(patientToEdit.getEmail());
-        Address updatedAddress = EditPatientDescriptor.getAddress().orElse(patientToEdit.getAddress());
+        Name updatedName = editPatientDescriptor.getName().orElse(patientToEdit.getName());
+        Phone updatedPhone = editPatientDescriptor.getPhone().orElse(patientToEdit.getPhone());
+        Email updatedEmail = editPatientDescriptor.getEmail().orElse(patientToEdit.getEmail());
+        Address updatedAddress = editPatientDescriptor.getAddress().orElse(patientToEdit.getAddress());
 
         Set<Tag> existingTags = patientToEdit.getTags();
 
@@ -115,8 +116,8 @@ public class EditCommand extends Command {
                 .filter(t -> t instanceof Condition)
                 .collect(Collectors.toSet());
 
-        Set<Tag> finalAllergies = EditPatientDescriptor.getAllergies().orElse(existingAllergies);
-        Set<Tag> finalConditions = EditPatientDescriptor.getConditions().orElse(existingConditions);
+        Set<Tag> finalAllergies = editPatientDescriptor.getAllergies().orElse(existingAllergies);
+        Set<Tag> finalConditions = editPatientDescriptor.getConditions().orElse(existingConditions);
 
         Set<Tag> updatedTags = new HashSet<>();
         updatedTags.addAll(finalAllergies);
