@@ -13,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -57,13 +58,13 @@ public class AddCommandTest {
     public void execute_patientWithMultipleAllergies_addSuccessful() throws Exception {
         ModelStubAcceptingPatientAdded modelStub = new ModelStubAcceptingPatientAdded();
         Patient validPatient = new PatientBuilder()
-            .withAllergies(VALID_ALLERGY_ASPIRIN, VALID_ALLERGY_IBUPROFEN)
-            .build();
+                .withAllergies(VALID_ALLERGY_ASPIRIN, VALID_ALLERGY_IBUPROFEN)
+                .build();
 
         CommandResult commandResult = new AddCommand(validPatient).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validPatient)),
-            commandResult.getFeedbackToUser());
+                commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validPatient), modelStub.patientsAdded);
     }
 
@@ -74,12 +75,12 @@ public class AddCommandTest {
     public void execute_patientWithAllergiesAndConditions_addSuccessful() throws Exception {
         ModelStubAcceptingPatientAdded modelStub = new ModelStubAcceptingPatientAdded();
         Patient validPatient = new PatientBuilder().withAllergies(VALID_ALLERGY_ASPIRIN)
-            .withConditions(VALID_CONDITION_DIABETES).build();
+                .withConditions(VALID_CONDITION_DIABETES).build();
 
         CommandResult commandResult = new AddCommand(validPatient).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validPatient)),
-            commandResult.getFeedbackToUser());
+                commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validPatient), modelStub.patientsAdded);
     }
 
@@ -90,14 +91,14 @@ public class AddCommandTest {
     public void execute_patientWithAllergiesNoConditions_addSuccessful() throws Exception {
         ModelStubAcceptingPatientAdded modelStub = new ModelStubAcceptingPatientAdded();
         Patient validPatient = new PatientBuilder()
-            .withAllergies(VALID_ALLERGY_ASPIRIN)
-            .withConditions()
-            .build();
+                .withAllergies(VALID_ALLERGY_ASPIRIN)
+                .withConditions()
+                .build();
 
         CommandResult commandResult = new AddCommand(validPatient).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validPatient)),
-            commandResult.getFeedbackToUser());
+                commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validPatient), modelStub.patientsAdded);
     }
 
@@ -108,14 +109,14 @@ public class AddCommandTest {
     public void execute_patientWithConditionsNoAllergies_addSuccessful() throws Exception {
         ModelStubAcceptingPatientAdded modelStub = new ModelStubAcceptingPatientAdded();
         Patient validPatient = new PatientBuilder()
-            .withAllergies()
-            .withConditions(VALID_CONDITION_DIABETES)
-            .build();
+                .withAllergies()
+                .withConditions(VALID_CONDITION_DIABETES)
+                .build();
 
         CommandResult commandResult = new AddCommand(validPatient).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validPatient)),
-            commandResult.getFeedbackToUser());
+                commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validPatient), modelStub.patientsAdded);
     }
 
@@ -224,12 +225,22 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Patient> getFullPatientList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Patient> getFilteredPatientList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void updateFilteredPatientList(Predicate<Patient> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setPatientListComparator(Comparator<Patient> comparator) {
             throw new AssertionError("This method should not be called.");
         }
     }

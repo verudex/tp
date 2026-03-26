@@ -1,6 +1,7 @@
 package doctorwho.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import doctorwho.commons.core.GuiSettings;
@@ -82,6 +83,11 @@ public interface Model {
     void setPatient(Patient target, Patient editedPatient);
 
     /**
+     * Returns an unmodifiable view of the full patient list
+     */
+    ObservableList<Patient> getFullPatientList();
+
+    /**
      * Returns an unmodifiable view of the filtered patient list
      */
     ObservableList<Patient> getFilteredPatientList();
@@ -92,4 +98,11 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPatientList(Predicate<Patient> predicate);
+
+    /**
+     * Updates the comparator of the patient list view to sort by the given {@code comparator}.
+     *
+     * @throws NullPointerException if {@code comparator} is null.
+     */
+    void setPatientListComparator(Comparator<Patient> comparator);
 }
