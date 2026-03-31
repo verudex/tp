@@ -262,7 +262,7 @@ public class AddCommandParserTest {
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + NRIC_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + INVALID_ALLERGY_DESC + ALLERGY_DESC_ASPIRIN, Tag.MESSAGE_CONSTRAINTS);
+                + INVALID_ALLERGY_DESC + ALLERGY_DESC_ASPIRIN, Allergy.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + NRIC_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
@@ -276,17 +276,11 @@ public class AddCommandParserTest {
 
         // invalid allergy
         assertParseFailure(parser, NAME_DESC_BOB + NRIC_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + INVALID_ALLERGY_DESC, Tag.MESSAGE_CONSTRAINTS);
+                + INVALID_ALLERGY_DESC, Allergy.MESSAGE_CONSTRAINTS);
 
         // invalid condition
         assertParseFailure(parser, NAME_DESC_BOB + NRIC_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + INVALID_CONDITION_DESC, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-            + INVALID_ALLERGY_DESC, Allergy.MESSAGE_CONSTRAINTS);
-
-        // invalid condition
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-            + INVALID_CONDITION_DESC, Condition.MESSAGE_CONSTRAINTS);
+                + INVALID_CONDITION_DESC, Condition.MESSAGE_CONSTRAINTS);
 
     }
 }
