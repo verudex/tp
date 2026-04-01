@@ -350,17 +350,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * At least one patient exists in the list
 
 **Main Success Scenario:**
-1. User requests to list patients (UC02)
-2. User requests to delete a specific patient using the index
-3. DoctorWho removes the patient from the system
-4. DoctorWho shows a success message
+1. User requests to delete a specific patient using the index
+2. DoctorWho removes the patient from the system
+3. DoctorWho shows a success message
 
    Use case ends.
 
 **Extensions:**
 
-* 2a. Invalid, missing or out of bounds index
-    * 2a1. DoctorWho shows an error message
+* 1a. Invalid, missing or out of bounds index
+    * 1a1. DoctorWho shows an error message
 
       Use case ends.
 
@@ -376,7 +375,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Main Success Scenario:**
 1. User requests to list all patients
 2. DoctorWho displays all patients in the list panel
-3. DoctorWho shows a success message with the total number of patients
+3. DoctorWho shows a success message
 
    Use case ends.
 
@@ -391,37 +390,36 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * At least one patient exists in the list
 
 **Main Success Scenario:**
-1. User requests to list patients (UC03)
-2. User requests to edit a specific patient's information using the index
-3. DoctorWho updates the patient's information
-4. DoctorWho shows a success message with the updated details
+1. User requests to edit a specific patient's information using the index
+2. DoctorWho updates the patient's information
+3. DoctorWho shows a success message with the updated details
 
    Use case ends.
 
 **Extensions:**
 
-* 2a. Invalid, missing or out of bounds index
-    * 2a1. DoctorWho shows an error message
+* 1a. Invalid, missing or out of bounds index
+    * 1a1. DoctorWho shows an error message
 
       Use case ends.
 
-* 2b. No fields provided to edit
-    * 2b1. DoctorWho shows an error message
+* 1b. No fields provided to edit
+    * 1b1. DoctorWho shows an error message
 
       Use case ends.
 
-* 2c. Invalid field values 
-    * 2c1. DoctorWho shows an error message
+* 1c. Invalid field values 
+    * 1c1. DoctorWho shows an error message
 
       Use case ends.
 
-* 2d. Edited details result in a duplicate patient
-    * 2d1. DoctorWho shows an error message
+* 1d. Edited details result in a duplicate patient
+    * 1d1. DoctorWho shows an error message
 
       Use case ends.
 
-* 2e. User provides allergies or conditions field with no value
-    * 2e1. DoctorWho clears all existing conditions or allergies respectively
+* 1e. User provides allergies or conditions field with no value
+    * 1e1. DoctorWho clears all existing conditions or allergies respectively
 
       Use case resumes from step 3.
 
@@ -436,40 +434,38 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * At least one patient exists in the list
 
 **Main Success Scenario:**
-1. User requests to list patients (UC03)
-2. User requests to add an appointment for a specific patient using the index
-3. DoctorWho adds the appointment to the patient's record
-4. DoctorWho shows a success message with the appointment details
+1. User requests to add an appointment for a specific patient using the index
+2. DoctorWho adds the appointment to the patient's record
+3. DoctorWho shows a success message with the appointment details
 
    Use case ends.
 
 **Extensions:**
 
-* 2a. Invalid, missing or out of bounds index
-    * 2a1. DoctorWho shows an error message
+* 1a. Invalid, missing or out of bounds index
+    * 1a1. DoctorWho shows an error message
 
       Use case ends.
 
-* 2b. Missing mandatory fields (datetime or duration)
-    * 2b1. DoctorWho shows an error message
+* 1b. Missing mandatory fields (datetime or duration)
+    * 1b1. DoctorWho shows an error message
 
       Use case ends.
 
-* 2c. Invalid field values (e.g. invalid datetime format or duration out of range)
-    * 2c1. DoctorWho shows an error message
+* 1c. Invalid field values (e.g. invalid datetime format or duration out of range)
+    * 1c1. DoctorWho shows an error message
 
       Use case ends.
 
-* 2d. Appointment is a duplicate of an existing appointment for the same patient
-    * 2d1. DoctorWho shows an error message
+* 1d. Appointment is a duplicate of an existing appointment for the same patient
+    * 1d1. DoctorWho shows an error message
 
       Use case ends.
 
-* 2e. New appointment overlaps with an existing appointment
-    * 2e1. DoctorWho shows a warning message
-    * 2e2. DoctorWho still adds the appointment
+* 1e. New appointment overlaps with an existing appointment
+    * 1e1. DoctorWho shows an error message
 
-      Use case resumes from step 3.
+      Use case ends.
 
 **Post conditions:**
 * Appointment is added and visible in the patient detail panel
@@ -482,27 +478,102 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * At least one patient exists in the list
 
 **Main Success Scenario:**
-1. User requests to list patients (UC02)
-2. User requests to delete the appointment of a specific patient using the index
-3. DoctorWho removes the appointment from the patient's record
-4. DoctorWho shows a success message
+1. User requests to delete the appointment of a specific patient using the index
+2. DoctorWho removes the appointment from the patient's record
+3. DoctorWho shows a success message
 
    Use case ends.
 
 **Extensions:**
 
-* 2a. Invalid, missing or out of bounds index
-    * 2a1. DoctorWho shows an error message
+* 1a. Invalid, missing or out of bounds index
+    * 1a1. DoctorWho shows an error message
 
       Use case ends.
 
-* 2b. Patient has no existing appointment
-    * 2b1. DoctorWho shows an error message
+* 1b. Patient has no existing appointment
+    * 1b1. DoctorWho shows an error message
 
       Use case ends.
 
 **Post conditions:**
 * Appointment is removed from the patient's record
+
+**Use Case 08: Find Patients**
+
+**Preconditions:**
+* User has launched the DoctorWho application
+* User is at the command prompt
+
+**Main Success Scenario:**
+1. User requests to find patients by keyword
+2. DoctorWho displays all patients whose names contain the keyword
+3. DoctorWho shows a success message
+
+   Use case ends.
+
+**Extensions:**
+
+* 1a. No patient name contains the keyword
+    * 1a1. DoctorWho shows a success message with 0 patients listed
+
+      Use case ends.
+
+* 1b. Missing keyword
+    * 1b1. DoctorWho shows an error message
+
+      Use case ends.
+
+**Post conditions:**
+* Patient list panel displays only patients matching the keyword
+
+---
+
+**Use Case 09: Clear All Patients**
+
+**Preconditions:**
+* User has launched the DoctorWho application
+* User is at the command prompt
+
+**Main Success Scenario:**
+1. User requests to clear all patient records
+2. DoctorWho removes all patients and their appointments from the system
+3. DoctorWho shows a success message
+
+   Use case ends.
+
+**Post conditions:**
+* Patient list is empty
+
+---
+
+**Use Case 10: View Help**
+
+**Preconditions:**
+* User has launched the DoctorWho application
+* User is at the command prompt
+
+**Main Success Scenario:**
+1. User requests to view help
+2. DoctorWho opens a help window with a link to the User Guide
+
+   Use case ends.
+
+**Post conditions:**
+* Help window is displayed to the user
+
+---
+
+**Use Case 11: Exit Application**
+
+**Preconditions:**
+* User has launched the DoctorWho application
+
+**Main Success Scenario:**
+1. User requests to exit the application
+2. DoctorWho closes the application
+
+   Use case ends.
 
 ### Non-Functional Requirements
 
