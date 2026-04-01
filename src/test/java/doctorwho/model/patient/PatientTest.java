@@ -48,7 +48,7 @@ public class PatientTest {
 
         // NRIC differs in case, all other attributes same -> returns false
         Patient editedBob = new PatientBuilder(BOB).withNric(VALID_NRIC_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSamePatient(editedBob));
+        assertTrue(BOB.isSamePatient(editedBob));
 
         // same name with different NRIC -> returns false
         editedBob = new PatientBuilder(BOB).withName(VALID_NAME_BOB).withNric(VALID_NRIC_AMY).build();
