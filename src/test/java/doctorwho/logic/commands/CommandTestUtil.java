@@ -54,6 +54,10 @@ public class CommandTestUtil {
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
+    public static final String INVALID_ALLERGY_DESC = " "
+                                            + PREFIX_ALLERGY + "ibuprofen*"; // '*' not allowed in allergies
+    public static final String INVALID_CONDITION_DESC = " "
+                                            + PREFIX_CONDITION + "diab*"; // '*' not allowed in conditions
 
     public static final String VALID_ALLERGY_SULFONAMIDES = "Sulfonamides";
     public static final String VALID_CONDITION_DIABETES = "Diabetes";
@@ -68,17 +72,24 @@ public class CommandTestUtil {
     public static final String CONDITION_DESC_HYPERTENSION = " " + PREFIX_CONDITION + VALID_CONDITION_HYPERTENSION;
     public static final String CONDITION_DESC_ASTHMA = " " + PREFIX_CONDITION + VALID_CONDITION_ASTHMA;
 
-    public static final String INVALID_ALLERGY_DESC = " " + PREFIX_ALLERGY + "ibuprofen*";
-    public static final String INVALID_CONDITION_DESC = " " + PREFIX_CONDITION + "diab*";
-
     /* ===================== Appointment ===================== */
 
     // Valid values
     public static final String VALID_APPOINTMENT_STARTTIME = "12-03-2026 14:00";
-    public static final String VALID_APPOINTMENT_DURATION = "30";
+    public static final int VALID_APPOINTMENT_DURATION = 30;
     public static final String VALID_APPOINTMENT_NOTE = "Routine Checkup";
     public static final String INVALID_APPOINTMENT_STARTTIME = "2026/03/12";
     public static final String INVALID_APPOINTMENT_DURATION = "-10";
+
+    // Starts at 14:15 — within the 14:00–14:30 window
+    public static final String VALID_APPOINTMENT_STARTTIME_OVERLAPPING = "12-03-2026 14:15";
+    public static final int VALID_APPOINTMENT_DURATION_OVERLAPPING = 30;
+    public static final String VALID_APPOINTMENT_NOTE_OVERLAPPING = "Follow-up Checkup";
+
+    // A third appointment that does NOT overlap (starts after 14:30)
+    public static final String VALID_APPOINTMENT_STARTTIME_NON_OVERLAPPING = "12-03-2026 15:00";
+    public static final int VALID_APPOINTMENT_DURATION_NON_OVERLAPPING = 30;
+    public static final String VALID_APPOINTMENT_NOTE_NON_OVERLAPPING = "Evening Consultation";
 
     public static final String APPOINTMENT_STARTTIME_DESC_VALID =
             " " + PREFIX_APPOINTMENT_STARTTIME + VALID_APPOINTMENT_STARTTIME;
@@ -104,7 +115,7 @@ public class CommandTestUtil {
         DESC_BOB = new EditPatientDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withAllergies(VALID_ALLERGY_IBUPROFEN, VALID_ALLERGY_ASPIRIN)
-            .withConditions(VALID_CONDITION_HYPERTENSION).build();
+                .withConditions(VALID_CONDITION_HYPERTENSION).build();
     }
 
     /**
