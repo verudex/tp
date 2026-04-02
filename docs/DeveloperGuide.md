@@ -689,44 +689,157 @@ testers are expected to do more *exploratory* testing.
 ### Launch and shutdown
 
 1. Initial launch
+    1. Download the jar file and copy into an empty folder
+    2. Open a terminal, navigate to the folder and run `java -jar doctorwho.jar`
 
-   1. Download the jar file and copy into an empty folder
-
-   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+       Expected: Shows the GUI with a set of sample patients. The window size may not be optimum.
 
 2. Saving window preferences
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    2. Re-launch the app using `java -jar doctorwho.jar`
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
-   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-3. _{ more test cases …​ }_
+### Adding a patient
+
+1. Adding a valid patient
+    1. Test case: `add n/John Doe p/98765432 e/johnd@example.com a/123 Clementi Ave`
+
+       Expected: Patient added at the bottom of the list. Success message shown with patient name.
+
+2. Adding a patient with missing mandatory fields
+    1. Test case: `add n/John Doe p/98765432`
+
+       Expected: No patient added. Error message shown with correct command format.
+
+3. Adding a duplicate patient
+    1. Prerequisites: Patient `John Doe` with phone `98765432` already exists.
+    2. Test case: `add n/John Doe p/98765432 e/johnd@example.com a/123 Clementi Ave`
+
+       Expected: No patient added. Error message indicating duplicate patient.
 
 ### Deleting a patient
 
 1. Deleting a patient while all patients are being shown
+    1. Prerequisites: List all patients using the `list` command. Multiple patients in the list.
+    2. Test case: `delete 1`
 
-   1. Prerequisites: List all patients using the `list` command. Multiple patients in the list.
+       Expected: First patient is deleted from the list. Success message shown with patient name.
 
-   2. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    3. Test case: `delete 0`
 
-   3. Test case: `delete 0`<br>
-      Expected: No patient is deleted. Error details shown in the status message. Status bar remains the same.
+       Expected: No patient deleted. Error message shown.
 
-   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+    4. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size)
 
-2. _{ more test cases …​ }_
+       Expected: Similar to previous.
+
+### Editing a patient
+
+1. Editing a patient's phone number
+    1. Prerequisites: At least one patient in the list.
+    2. Test case: `edit 1 p/91234567`
+
+       Expected: First patient's phone number updated. Success message shown.
+
+2. Clearing all allergies
+    1. Test case: `edit 1 al/`
+
+       Expected: All allergies removed from first patient. Success message shown.
+
+3. Editing with no fields provided
+    1. Test case: `edit 1`
+
+       Expected: No changes made. Error message shown.
+
+### Adding an appointment
+
+1. Adding a valid appointment
+    1. Prerequisites: At least one patient in the list.
+    2. Test case: `apt 1 d/01-04-2026 09:00 dur/60 note/Follow-up`
+
+       Expected: Appointment added to first patient. Success message shown.
+
+2. Adding an appointment with invalid date format
+    1. Test case: `apt 1 d/2026-04-01 09:00 dur/60`
+
+       Expected: No appointment added. Error message showing correct date format.
+
+3. Adding an appointment with invalid duration
+    1. Test case: `apt 1 d/01-04-2026 09:00 dur/0`
+
+       Expected: No appointment added. Error message shown.
+
+### Deleting an appointment
+
+1. Deleting an existing appointment
+    1. Prerequisites: Patient at index 1 has an existing appointment.
+    2. Test case: `dapt 1`
+
+       Expected: Appointment removed. Success message shown.
+
+2. Deleting appointment from patient with no appointment
+    1. Prerequisites: Patient at index 1 has no appointment.
+    2. Test case: `dapt 1`
+
+       Expected: No changes made. Error message shown.
+
+### Listing appointments
+
+1. Listing all appointments
+    1. Test case: `lsapt`
+
+       Expected: All appointments listed in ascending date-time order. Success message shows number of appointments.
+
+2. Listing appointments by date
+    1. Test case: `lsapt d/01-04-2026`
+
+       Expected: Only appointments on 1 April 2026 shown.
+
+3. Invalid date format
+    1. Test case: `lsapt d/2026-04-01`
+
+       Expected: Error message showing correct date format.
+
+### Finding patients
+
+1. Finding by name keyword
+    1. Test case: `find John`
+
+       Expected: All patients whose names contain the full word "John" listed. Success message shows number of patients found.
+
+2. Finding with no matches
+    1. Test case: `find ZZZZZ`
+
+       Expected: Empty list shown. Success message shows 0 patients found.
+
+3. Finding with missing keyword
+    1. Test case: `find`
+
+       Expected: Error message shown with correct command format.
+
+### Clearing all patients
+
+1. Test case: `clear`
+
+   Expected: All patients and appointments removed. Success message shown.
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with missing data file
+    1. Close the app.
+    2. Navigate to `[JAR file location]/data/` and delete `DoctorWho.json`.
+    3. Re-launch the app.
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+       Expected: App starts with sample patient data. A new `DoctorWho.json` is created.
 
-2. _{ more test cases …​ }_
+2. Dealing with corrupted data file
+    1. Close the app.
+    2. Open `[JAR file location]/data/DoctorWho.json` in a text editor.
+    3. Delete a random line in the middle of the file and save.
+    4. Re-launch the app.
+
+       Expected: App starts with an empty patient list. Corrupted data file is discarded.
 
 ## **Appendix: Planned Enhancements**
 
@@ -734,3 +847,20 @@ testers are expected to do more *exploratory* testing.
    patient's name. However, this means that the stored patient name may not be a match their exact government name. We
    plan to implement apostrophe string enclosing to allow such special characters to be included in the name without
    conflicting with the special characters used for the argument prefixes.
+
+## **Appendix: Effort**
+
+**Difficulty level**: DoctorWho is significantly more complex than AB3. While AB3 manages a single entity type (Person), DoctorWho manages two entity types (Patient and Appointment) with relationships between them, requiring changes across all architectural layers.
+
+**Challenges faced**:
+- Implementing the `Appointment` entity required changes across Logic, Model, Storage and UI layers simultaneously
+- Refactoring the generic `Tag` class into two specialised subclasses (`Allergy` and `Condition`) with separate validation rules, character limits and regex patterns required careful design to maintain extensibility
+- Implementing overlap detection across all patients' appointments required non-trivial logic in the Model layer
+- Updating the UI to include a dedicated `PatientDetailPanel` alongside the existing list panel required significant JavaFX work
+
+**Effort**: Approximately equivalent to 1.5x the effort of AB3, given the addition of a second entity type and the tag hierarchy refactor.
+
+**Achievements**:
+- Successfully delivered all 7 MVP features on time
+- Introduced a clean tag hierarchy (`Tag` → `Allergy`/`Condition`) that is easily extensible for future tag types
+- Improved UI with a split-panel layout showing patient details alongside the patient list
