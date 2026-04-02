@@ -10,8 +10,14 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the
-  original source as well}
+* AddressBook-Level3 (AB3): The original source code for this application was adapted from the
+[AddressBook-Level3](https://github.com/se-edu/addressbook-level3)
+ project created by the SE-EDU initiative. 
+* NRIC Checksum: Introduce documentation for NRIC checksum. [Link](https://userapps.support.sap.com/sap/support/knowledge/en/2572734)
+* JavaFX: Used for the Graphical User Interface (GUI). [Link](https://openjfx.io/)
+* JUnit5: Used for the unit testing framework. [Link](https://junit.org/junit5/)
+* PlantUML: Used to generate the diagrams in this documentation. [Link](https://plantuml.com/)
+* Icons: PNG Icons from [ICONPACKS](https://www.iconpacks.net/)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -41,8 +47,8 @@ Given below is a quick overview of main components and how they interact with ea
 **Main components of the architecture**
 
 **`Main`** (consisting of classes [
-`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [
-`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java)) is in
+`Main`](https://github.com/AY2526S2-CS2103T-F10-1/tp/tree/master/src/main/java/doctorwho/Main.java) and [
+`MainApp`](https://github.com/AY2526S2-CS2103T-F10-1/tp/tree/master/src/main/java/doctorwho/MainApp.java)) is in
 charge of the app launch and shut down.
 
 * At app launch, it initializes the other components in the correct sequence, and connects them up with each other.
@@ -81,7 +87,7 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2526S2-CS2103T-F10-1/tp/tree/master/src/main/java/doctorwho/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -90,8 +96,8 @@ The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `Re
 the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that
-are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java)
-is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2526S2-CS2103T-F10-1/tp/tree/master/src/main/java/doctorwho/ui/MainWindow.java)
+is specified in [`MainWindow.fxml`](https://github.com/AY2526S2-CS2103T-F10-1/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -102,7 +108,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2526S2-CS2103T-F10-1/tp/tree/master/src/main/java/doctorwho/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -142,7 +148,7 @@ How the parsing works:
 
 ### Model component
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2526S2-CS2103T-F10-1/tp/tree/master/src/main/java/doctorwho/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -166,7 +172,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2526S2-CS2103T-F10-1/tp/tree/master/src/main/java/doctorwho/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -188,6 +194,67 @@ Classes used by multiple components are in the `doctorwho.commons` package.
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### NRIC validation feature
+
+#### Context
+
+NRIC/FIN is a core patient identifier and must be validated strictly. The app validates NRIC in two layers:
+
+1. **Structure check**: first letter + seven digits + checksum letter.
+2. **Checksum check**: Singapore NRIC/FIN modulus-11 checksum, including prefix-specific letter tables.
+
+This prevents malformed or checksum-invalid NRIC values from entering the model.
+
+#### Where validation happens
+
+Validation is centralized in `Nric` (model), instead of being duplicated in parser/storage:
+
+* `AddCommandParser` and `EditCommandParser` parse the `ic/` value and construct `Nric`.
+* `JsonAdaptedPatient` also constructs `Nric` during JSON deserialization.
+* `Nric#isValidNric(String)` is therefore the single source of truth for all input paths.
+
+This design guarantees consistent behavior for CLI input, test fixtures, and persisted data loading.
+
+#### Checksum algorithm
+
+For an NRIC/FIN value with prefix `P`, digits `d1..d7`, and suffix letter `L`:
+
+1. Compute weighted sum using weights `[2, 7, 6, 5, 4, 3, 2]`.
+2. Add prefix offset:
+   * `+4` for `T` and `G`
+   * `+3` for `M`
+   * `+0` for `S` and `F`
+3. Compute `remainder = sum mod 11`.
+4. Compute `checkDigit = 11 - (remainder + 1)`.
+5. Map `checkDigit` to letter table based on prefix group:
+   * `S/T -> ABCDEFGHIZJ`
+   * `F/G -> KLMNPQRTUWX`
+   * `M   -> KLJNPQRTUWX`
+
+NRIC is valid only if computed suffix letter equals `L`.
+
+#### Design considerations
+
+**Aspect: location of checksum logic**
+
+* **Alternative 1 (chosen):** keep checksum logic in `Nric`.
+  * Pros: one validation implementation across parser, model, and storage.
+  * Cons: parser tests must use checksum-valid NRIC fixtures.
+
+* **Alternative 2:** validate in parser only.
+  * Pros: simpler parser flow.
+  * Cons: invalid values could still enter through storage or future non-parser paths.
+
+#### Tests
+
+NRIC behavior is covered by:
+
+* `NricTest`: constructor guardrails, normalization, format checks, checksum-valid and checksum-invalid cases.
+* `AddCommandParserTest`: invalid NRIC parsing failures.
+* `JsonAdaptedPatientTest`: invalid NRIC in JSON rejected during conversion.
+
+In addition, shared test fixtures (e.g., `TypicalPatients`, `PatientBuilder`) use checksum-valid NRIC values to avoid false failures.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -286,12 +353,37 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Will use less memory (e.g. for `delete`, just save the patient being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
-
 ### \[Proposed\] Data archiving
 
-_{Explain here how the data archiving feature will be implemented}_
+The proposed data archiving feature allows doctors to move inactive or deceased patients from the active patient list to an archive. This reduces visual clutter and improves performance while retaining historical records.
 
+#### Proposed Implementation
+
+The archiving mechanism will be facilitated by adding an `ArchiveBook` to the `Model`, functioning similarly to the `AddressBook`.
+
+* An `archive PATIENT_INDEX` command will be added.
+* `Model` will be extended with `Model#archivePatient(Patient)` and `Model#unarchivePatient(Patient)`.
+* When a patient is archived, they are removed from the active `UniquePatientList` and added to the `ArchiveBook`.
+* The `Storage` component will be updated to save the `ArchiveBook` to a separate `data/archive.json` file.
+
+#### Design considerations:
+
+* **Alternative 1 (current choice):** Use a separate `ArchiveBook` and `archive.json`.
+    * Pros: Keeps the main `AddressBook` lightweight and fast. Prevents archived patients from appearing in regular search results.
+    * Cons: Requires duplicating some model and storage logic.
+* **Alternative 2:** Add an `isArchived` boolean field to the `Patient` model.
+    * Pros: Simpler to implement.
+    * Cons: The main JSON file will continue to grow indefinitely, potentially degrading performance over time.
+
+### \[Proposed\] Automated Appointment Reminders
+
+The proposed appointment reminder feature will alert the doctor of any upcoming appointments within the next 24 hours upon launching the application or while it is running.
+
+#### Proposed Implementation
+
+* A `ReminderManager` class will be added to the `Logic` component.
+* `ReminderManager` will periodically query the `Model` for patients with an `Appointment` whose start time falls within a specific threshold (e.g., next 24 hours).
+* The `UI` will be updated to include a `ReminderPanel` that observes the `ReminderManager` and displays upcoming appointments in a dedicated side panel or via visual indicators next to patient names.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -561,3 +653,10 @@ testers are expected to do more *exploratory* testing.
     1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 2. _{ more test cases …​ }_
+
+## **Appendix: Planned Enhancements**
+
+1. Include support for slashes (/) in patient name. Currently, we ask the user to remove slashes when entering the
+   patient's name. However, this means that the stored patient name may not be a match their exact government name. We
+   plan to implement apostrophe string enclosing to allow such special characters to be included in the name without
+   conflicting with the special characters used for the argument prefixes.
