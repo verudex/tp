@@ -32,6 +32,7 @@ public class TypicalPatients {
 
     public static final Patient ALICE = new PatientBuilder().withName("Alice Pauline")
             .withNric("S9435125A")
+            .withSex("F")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253")
             .withAllergies(VALID_ALLERGY_ASPIRIN).withConditions(VALID_CONDITION_DIABETES)
@@ -42,30 +43,37 @@ public class TypicalPatients {
             .build();
     public static final Patient BENSON = new PatientBuilder().withName("Benson Meier")
             .withNric("S9876543C")
+            .withSex("M")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withAllergies(VALID_ALLERGY_IBUPROFEN, VALID_ALLERGY_ASPIRIN).build();
     public static final Patient CARL = new PatientBuilder().withName("Carl Kurz").withNric("S9535256A")
+            .withSex("M")
             .withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").withConditions(VALID_CONDITION_ASTHMA).build();
     public static final Patient DANIEL = new PatientBuilder().withName("Daniel Meier").withNric("S8765253Z")
+            .withSex("M")
             .withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street").withAllergies(VALID_ALLERGY_IBUPROFEN)
             .build();
     public static final Patient ELLE = new PatientBuilder().withName("Elle Meyer").withNric("S0948222I")
+            .withSex("F")
             .withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave").build();
     public static final Patient FIONA = new PatientBuilder().withName("Fiona Kunz").withNric("S0948242C")
+            .withSex("F")
             .withPhone("9482427")
             .withEmail("lydia@example.com").withAddress("little tokyo")
             .withAllergies(VALID_ALLERGY_ASPIRIN, VALID_ALLERGY_IBUPROFEN).withConditions(VALID_CONDITION_HYPERTENSION)
             .build();
     public static final Patient GEORGE = new PatientBuilder().withName("George Best").withNric("S0948244Z")
+            .withSex("M")
             .withPhone("9482442")
             .withEmail("anna@example.com").withAddress("4th street").build();
 
     // Manually added
     public static final Patient HOON = new PatientBuilder().withName("Hoon Meier").withNric("S0848242Z")
+            .withSex("M")
             .withPhone("8482424")
             .withEmail("stefan@example.com").withAddress("little india").build();
     public static final Patient IDA = new PatientBuilder().withName("Ida Mueller").withNric("S0848213F")
@@ -74,10 +82,12 @@ public class TypicalPatients {
 
     // Manually added - Patient's details found in {@code CommandTestUtil}
     public static final Patient AMY = new PatientBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
+            .withSex("F")
             .withNric("S1234567D")
             .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withAllergies(VALID_ALLERGY_ASPIRIN)
             .withConditions(VALID_CONDITION_ASTHMA).build();
     public static final Patient BOB = new PatientBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+            .withSex("M")
             .withNric("S2345678H")
             .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
             .withAllergies(VALID_ALLERGY_IBUPROFEN, VALID_ALLERGY_ASPIRIN).withConditions(VALID_CONDITION_HYPERTENSION)
