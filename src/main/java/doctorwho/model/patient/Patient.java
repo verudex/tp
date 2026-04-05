@@ -37,7 +37,8 @@ public class Patient {
     /**
      * Every field must be present and not null.
      */
-    public Patient(Name name, Nric nric, Sex sex, DateOfBirth dob, Phone phone, Email email, Address address, Set<Tag> tags,
+    public Patient(Name name, Nric nric, Sex sex, DateOfBirth dob, Phone phone, Email email, Address address,
+                   Set<Tag> tags,
                    Appointment appointment) {
         requireAllNonNull(name, nric, phone, email, address, tags);
         this.name = name;
@@ -51,7 +52,8 @@ public class Patient {
         this.appointment = appointment;
     }
 
-    public Patient(Name name, Nric nric, Sex sex, DateOfBirth dob, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Patient(Name name, Nric nric, Sex sex, DateOfBirth dob, Phone phone, Email email, Address address,
+                   Set<Tag> tags) {
         this(name, nric, sex, dob, phone, email, address, tags, null);
     }
 

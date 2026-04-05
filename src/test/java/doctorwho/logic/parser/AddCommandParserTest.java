@@ -60,11 +60,13 @@ import org.junit.jupiter.api.Test;
 import doctorwho.logic.Messages;
 import doctorwho.logic.commands.AddCommand;
 import doctorwho.model.patient.Address;
+import doctorwho.model.patient.DateOfBirth;
 import doctorwho.model.patient.Email;
 import doctorwho.model.patient.Name;
 import doctorwho.model.patient.Nric;
 import doctorwho.model.patient.Patient;
 import doctorwho.model.patient.Phone;
+import doctorwho.model.patient.Sex;
 import doctorwho.model.tag.Allergy;
 import doctorwho.model.tag.Condition;
 import doctorwho.testutil.PatientBuilder;
@@ -300,13 +302,13 @@ public class AddCommandParserTest {
         assertParseFailure(parser,
             NAME_DESC_BOB + NRIC_DESC_BOB + INVALID_SEX_DESC + DOB_DESC_BOB + PHONE_DESC_BOB
                 + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + ALLERGY_DESC_IBUPROFEN + ALLERGY_DESC_ASPIRIN,
-            Nric.MESSAGE_CONSTRAINTS);
+            Sex.MESSAGE_CONSTRAINTS);
 
         // invalid dob
         assertParseFailure(parser,
             NAME_DESC_BOB + NRIC_DESC_BOB + SEX_DESC_BOB + INVALID_DOB_DESC + PHONE_DESC_BOB
                 + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + ALLERGY_DESC_IBUPROFEN + ALLERGY_DESC_ASPIRIN,
-            Nric.MESSAGE_CONSTRAINTS);
+            DateOfBirth.MESSAGE_CONSTRAINTS);
 
         // invalid phone
         assertParseFailure(parser,

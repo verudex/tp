@@ -124,7 +124,7 @@ class JsonAdaptedPatient {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Sex.class.getSimpleName()));
         }
         if (!Sex.isValidSex(sex)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Sex.MESSAGE_CONSTRAINTS);
         }
         final Sex modelSex = new Sex(sex);
 
