@@ -9,7 +9,7 @@ DoctorWho is a **desktop app for managing patient information and appointments, 
 Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, DoctorWho
 can get your patient management tasks done faster than traditional GUI apps.
 
-## Can DoctorWho help you? {:no_toc}
+<h2 style="margin-top: 0;">Can DoctorWho help you?</h2>
 
 Yes, if your clinic is still:
 
