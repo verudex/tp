@@ -3,13 +3,13 @@ layout: page
 title: User Guide
 ---
 
-Do you prefer typing information than having to click on multiple things? DoctorWho is for you!
+Do you prefer typing information to having to click on multiple things? DoctorWho is for you!
 
 DoctorWho is a **desktop app for managing patient information and appointments, optimized for use via a Command Line
 Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, DoctorWho
 can get your patient management tasks done faster than traditional GUI apps.
 
-## Can DoctorWho help you?
+<h2 style="margin-top: 0;">Can DoctorWho help you?</h2>
 
 Yes, if your clinic is still:
 
@@ -74,19 +74,19 @@ Don't worry if you're not tech-savvy — just follow these steps one by one and 
 Here is a quick reference list for the commands DoctorWho provides, more detailed information about all of the commands
 can be found in [Features](#features).
 
-| Action                  | Format, Examples                                                                                                                                                                                                                            |
-|-------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**                 | `add n/NAME ic/NRIC dob/DOB p/PHONE_NUMBER e/EMAIL a/ADDRESS [al/ALLERGY] [c/CONDITION]…​` <br> e.g., `add n/James Ho ic/S1234567D dob/01-04-2003 p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 al/dust c/allergic rhinitis` |
-| **List**                | `list`                                                                                                                                                                                                                                      |
-| **Edit**                | `edit PATIENT_NUMBER [n/NAME] [ic/NRIC] [dob/DOB] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [al/ALLERGY] [c/CONDITION]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                 |
-| **Find**                | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                  |
-| **Delete**              | `delete PATIENT_NUMBER`<br> e.g., `delete 3`                                                                                                                                                                                                |
-| **Add appointments**    | `apt PATIENT_NUMBER d/DATETIME dur/DURATION [note/NOTE]`<br> e.g., `apt 2 d/01-04-2026 09:00 dur/60 note/Follow-up for diabetes review `                                                                                                    |
-| **Delete appointments** | `dapt PATIENT_NUMBER`<br> e.g., `dapt 1`                                                                                                                                                                                                    |
-| **List appointments**   | `lsapt [d/DATE]`<br> e.g., `lsapt`, `lsapt d/14-03-2026`                                                                                                                                                                                    |
-| **Clear**               | `clear`                                                                                                                                                                                                                                     |
-| **Help**                | `help`                                                                                                                                                                                                                                      |
-| **Exit**                | `exit`                                                                                                                                                                                                                                      |
+| Action                  | Format, Examples                                                                                                                                                                                                                             |
+|-------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**                 | `add n/NAME ic/NRIC dob/DOB p/PHONE_NUMBER e/EMAIL a/ADDRESS [al/ALLERGY] [mc/CONDITION]…​` <br> e.g., `add n/James Ho ic/S1234567D dob/01-04-2003 p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 al/dust c/allergic rhinitis` |
+| **List**                | `list`                                                                                                                                                                                                                                       |
+| **Edit**                | `edit PATIENT_NUMBER [n/NAME] [ic/NRIC] [dob/DOB] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [al/ALLERGY] [mc/CONDITION]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                 |
+| **Find**                | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                   |
+| **Delete**              | `delete PATIENT_NUMBER`<br> e.g., `delete 3`                                                                                                                                                                                                 |
+| **Add appointments**    | `apt PATIENT_NUMBER d/DATETIME dur/DURATION [note/NOTE]`<br> e.g., `apt 2 d/01-04-2026 09:00 dur/60 note/Follow-up for diabetes review `                                                                                                     |
+| **Delete appointments** | `dapt PATIENT_NUMBER`<br> e.g., `dapt 1`                                                                                                                                                                                                     |
+| **List appointments**   | `lsapt [d/DATE]`<br> e.g., `lsapt`, `lsapt d/14-03-2026`                                                                                                                                                                                     |
+| **Clear**               | `clear`                                                                                                                                                                                                                                      |
+| **Help**                | `help`                                                                                                                                                                                                                                       |
+| **Exit**                | `exit`                                                                                                                                                                                                                                       |
 
 ## Features
 
@@ -99,7 +99,7 @@ can be found in [Features](#features).
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [al/ALLERGY]` can be used as `n/John Doe al/Aspirin` or as `n/John Doe`.
-  E.g `n/NAME [c/CONDITION]` can be used as `n/Johnny c/High BP` or as `n/Johnny`
+  E.g `n/NAME [mc/CONDITION]` can be used as `n/Johnny mc/High BP` or as `n/Johnny`
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[al/ALLERGY]…​` can be used as ` ` (i.e. 0 times), `al/Penicillin`, `al/Ibuprofen al/Aspirin` etc.]
@@ -130,7 +130,7 @@ Format: `help`
 
 Adds a patient to DoctorWho.
 
-Format: `add n/NAME ic/NRIC dob/DOB p/PHONE_NUMBER e/EMAIL a/ADDRESS [al/ALLERGY] [c/CONDITION]…​`
+Format: `add n/NAME ic/NRIC dob/DOB p/PHONE_NUMBER e/EMAIL a/ADDRESS [al/ALLERGY] [mc/CONDITION]…​`
 
 <div markdown="block" class="alert alert-info">
 
@@ -161,7 +161,7 @@ A patient can have any number of allergies or medical conditions (including 0)
 Examples:
 
 * `add n/John Doe ic/S1234567D dob/01-04-2003 p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe ic/S2345678H dob/02-04-2003 e/bcrowe@example.com a/Newgate Prison p/1234567 al/Penicillin c/cold`
+* `add n/Betsy Crowe ic/S2345678H dob/02-04-2003 e/bcrowe@example.com a/Newgate Prison p/1234567 al/Penicillin mc/cold`
 * `add n/Tim Chal ic/S4567890C dob/03-04-2003 e/betsycrowe@example.com a/Newgate Prison p/1234567 al/Morphine`
 
 ### Listing all patients : `list`
@@ -174,21 +174,21 @@ Format: `list`
 
 Edits an existing patient in DoctorWho.
 
-Format: `edit PATIENT_NUMBER [n/NAME] [ic/NRIC] [dob/DOB] [p/PHONE] [e/EMAIL] [a/ADDRESS] [al/ALLERGY] [c/CONDITION]…​`
+Format: `edit PATIENT_NUMBER [n/NAME] [ic/NRIC] [dob/DOB] [p/PHONE] [e/EMAIL] [a/ADDRESS] [al/ALLERGY] [mc/CONDITION]…​`
 
 * Edits the patient at the specified `PATIENT_NUMBER`. The index refers to the index number shown in the displayed
   patient list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing conditions and allergies, the existing ones of the patient will be removed i.e adding is not cumulative.
-* You can remove all the patient’s allergies or medical conditions by typing `al/` or `c/` respectively, without
+* You can remove all the patient’s allergies or medical conditions by typing `al/` or `mc/` respectively, without
   specifying anything after it.
 
 Examples:
 
 * `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567`
   and `johndoe@example.com` respectively.
-* `edit 2 n/Betsy Crower al/ c/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing
+* `edit 2 n/Betsy Crower al/ mc/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing
   allergies and medical conditions.
 
 ### Locating patients by name: `find`
@@ -228,10 +228,10 @@ Examples:
 
 Adds an appointment to the patient identified by the index number used in the displayed patient list. Supply the start date and time, duration and an optional note. Existing appointment will be overwritten by the new appointment.
 
-Format: `apt INDEX d/DATETIME dur/DURATION [note/NOTE]`
+Format: `apt PATIENT_NUMBER d/DATETIME dur/DURATION [note/NOTE]`
 
-* Creates and adds an appointment for the patient at the specified `INDEX`.
-* The `INDEX` **must be a positive integer** 1, 2, 3, …​
+* Creates and adds an appointment for the patient at the specified `PATIENT_NUMBER`.
+* The `PATIENT_NUMBER` **must be a positive integer** 1, 2, 3, …​
 * The date and time must be in the format `dd-MM-yyyy HH:mm` e.g, `12-03-2026 14:00` refers to 12th March 2026, 14:00.
 * The duration **must be a positive integer** in **minutes**.
 * The note is optional.
@@ -242,30 +242,15 @@ Examples:
   top, of the patient list, scheduled for 12th March 2026, at 14:00. A note will be indicated with
   `Note | Routine Checkup`
 
-### Listing appointments : `lsapt`
-
-Lists appointments, optionally filtering by a specific appointment date. The appointments are shown in ascending date-time order.
-
-Format: `lsapt [d/DATE]`
-
-* Shows all appointments if no date is provided.
-* If a date is provided, filters and shows appointments only for that specific date.
-* The date must be in the format `dd-MM-yyyy` e.g, `12-03-2026` refers to 12th March 2026.
-
-Examples:
-
-* `lsapt d/12-03-2026` lists appointments scheduled on 12th March 2026.
-* `lsapt` lists all appointments for all patients.
-
 ### Deleting an appointment : `dapt`
 
 Deletes the appointment of the patient identified by the index number used in the displayed patient list.
 
-Format: `dapt PATIENT_INDEX`
+Format: `dapt PATIENT_NUMBER`
 
-* Deletes the appointment for the patient at the specified `PATIENT_INDEX`.
-* The `PATIENT_INDEX` refers to the index number shown in the displayed patient list.
-* The `PATIENT_INDEX` **must be a positive integer** 1, 2, 3, …​
+* Deletes the appointment for the patient at the specified `PATIENT_NUMBER`.
+* The `PATIENT_NUMBER` refers to the index number shown in the displayed patient list.
+* The `PATIENT_NUMBER` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 
