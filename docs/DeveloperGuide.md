@@ -256,6 +256,25 @@ NRIC behavior is covered by:
 
 In addition, shared test fixtures (e.g., `TypicalPatients`, `PatientBuilder`) use checksum-valid NRIC values to avoid false failures.
 
+**Additional checksum-valid NRIC test values (You may copy and use these):**
+
+```text
+T0314597I
+T0314598G
+
+S1234567D
+S1490542A
+
+F9340704X
+F8164046R
+
+G3866432N
+G7296071N
+
+M8635947W
+M3594121L
+```
+
 ### \[Proposed\] Automated Appointment Reminders
 
 The proposed appointment reminder feature will alert the doctor of any upcoming appointments within the next 24 hours upon launching the application or while it is running.
