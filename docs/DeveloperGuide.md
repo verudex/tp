@@ -762,7 +762,7 @@ testers are expected to do more *exploratory* testing.
 ### Adding a patient
 
 1. Adding a valid patient
-    1. Test case: `add n/John Doe ic/T0123456H x/M dob/01-01-2000 p/98765432 e/johnd@example.com a/123 Clementi Ave`
+    1. Test case: `add n/John Doe ic/T1234567J x/M dob/01-01-2000 p/98765432 e/johnd@example.com a/123 Clementi Ave`
 
        Expected: Patient added at the bottom of the list. Success message shown with patient name.
 
@@ -773,7 +773,7 @@ testers are expected to do more *exploratory* testing.
 
 3. Adding a duplicate patient
     1. Prerequisites: Patient `John Doe` with NRIC `T0123456H` already exists (added in test case 1).
-    2. Test case: `add n/John Doe ic/T0123456H x/M dob/01-01-2000 p/98765432 e/johnd@example.com a/123 Clementi Ave`
+    2. Test case: `add n/John Doe ic/S9876543C x/M dob/01-01-2000 p/98765432 e/johnd@example.com a/123 Clementi Ave`
 
        Expected: No patient added. Error message indicating duplicate patient.
 
@@ -803,7 +803,7 @@ testers are expected to do more *exploratory* testing.
 
 2. Editing multiple fields of a patient (NRIC, phone, allergies, and medical condition)
     1. Prerequisites: At least one patient in the list.
-    2. Test case: `edit 1 ic/T0234567J p/98557988 al/ mc/High BP`
+    2. Test case: `edit 1 ic/T1234567J p/98557988 al/ mc/High BP`
 
    Expected: First patient's NRIC and phone are updated, existing allergies are cleared, and the medical condition "High BP" is added. Success message shown.
 
