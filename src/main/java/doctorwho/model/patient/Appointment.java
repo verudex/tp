@@ -58,6 +58,9 @@ public class Appointment {
      * Returns true if a given string is in the correct date-time format.
      */
     public static boolean isValidDateTime(String test) {
+        if (!test.matches("\\d{2}-\\d{2}-\\d{4} \\d{2}:\\d{2}")) {
+            return false;
+        }
         try {
             LocalDateTime.parse(test, FORMATTER);
             return true;
