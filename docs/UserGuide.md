@@ -104,7 +104,7 @@ can be found in [Features](#features).
 
 * Items in square brackets are optional.<br>
   e.g., `n/NAME [al/ALLERGY]` can be used as `n/John Doe al/Aspirin` or as `n/John Doe`.
-  E.g., `n/NAME [mc/CONDITION]` can be used as `n/Johnny mc/High BP` or as `n/Johnny`
+  e.g., `n/NAME [mc/CONDITION]` can be used as `n/Johnny mc/High BP` or as `n/Johnny`
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g., `[al/ALLERGY]…​` can be used as ` ` (i.e., 0 times), `al/Penicillin`, `al/Ibuprofen al/Aspirin` etc.
@@ -112,12 +112,17 @@ can be found in [Features](#features).
 * Parameters can be in any order.<br>
   e.g., if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
+* Prefixes can be surrounded by any number of spaces.<br>
+  e.g., `add     n/NAME` and `add n/     NAME`, will be interpreted as `add n/NAME`.
+
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g., if the command specifies `help 123`, it will be interpreted as `help`.
 
 * Date format is `dd-MM-yyyy` for `add` and `edit` commands, `dd-MM-yyyy HH:mm` for appointment commands.
 
-* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application. 
+
+* Also take note that the zero-width space(ZWSP) character is used in some examples showing consecutive spaces in an effort to fix HTML collapsing the whitespace. Therefore, you may face some issues directly copying those examples as the ZWSP is considered an invalid character for most parameters.
 
 </div>
 
