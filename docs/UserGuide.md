@@ -293,7 +293,7 @@ Format: `apt PATIENT_NUMBER d/DATETIME dur/DURATION [note/NOTE]`
 * Creates and adds an appointment for the patient at the specified `PATIENT_NUMBER`.
 * The `PATIENT_NUMBER` **must be a positive integer** 1, 2, 3, …​
 * The date and time must be in the format `dd-MM-yyyy HH:mm` e.g., `12-03-2026 14:00` refers to 12th March 2026, 14:00.
-* The duration **must be a positive integer** in **minutes**.
+* The duration **must be between 1 and 600 minutes inclusive**.
 * The note is optional.
 * If provided, `NOTE` must be at most **500 characters**.
 
@@ -374,7 +374,37 @@ manually.
 ### Editing the data file
 
 DoctorWho data is saved automatically as a JSON file `[JAR file location]/data/doctorwho.json`. Advanced users are
-welcome to update data directly by editing that data file.
+welcome to update data directly by editing that data file, which follows the following format.
+
+```json
+{
+  "patients" : [ {
+    "name" : "Alex Yeoh",
+    "nric" : "S1234567D",
+    "sex" : "F",
+    "dob" : "01-04-2003",
+    "phone" : "87438807",
+    "email" : "alexyeoh@example.com",
+    "address" : "Blk 30 Geylang Street 29, #06-40",
+    "tags" : [ "allergy:Penicillin", "condition:Diabetes" ],
+    "appointmentStart" : "12-03-2026 14:00",
+    "appointmentDuration" : 30,
+    "appointmentNote" : "Initial Consultation"
+  }, {
+    "name" : "Bernice Yu",
+    "nric" : "S2345678H",
+    "sex" : "F",
+    "dob" : "02-04-2003",
+    "phone" : "99272758",
+    "email" : "berniceyu@example.com",
+    "address" : "Blk 30 Lorong 3 Serangoon Gardens, #07-18",
+    "tags" : [ "condition:Hypertension", "allergy:Aspirin" ],
+    "appointmentStart" : null,
+    "appointmentDuration" : null,
+    "appointmentNote" : null
+  } ]
+}
+```
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, DoctorWho will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
