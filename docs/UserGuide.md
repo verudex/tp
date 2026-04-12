@@ -181,8 +181,11 @@ The domain name must:
 Examples of valid values: `e/alex.tan+clinic@example.com`, `e/a_b-c@sub-domain.example`.<br/>
 Examples of invalid values: `e/.alex@example.com`, `e/alex@-example.com`, `e/alex@example.c`.
 
-**Allergies and Conditions:**<br/>
-Allergy and condition names do not support consecutive spaces.
+**Drug Allergies (`al/`) and Medical Conditions (`mc/`):**<br/>
+Allergy and condition names do not support consecutive spaces and/or hyphens.
+
+Examples of valid values: `Beta-lactam`, `Type 2 diabetes`, `Post-traumatic stress disorder`.<br/>
+Examples of invalid values: `Beta- lactam`, `Type ​ 2 ​ diabetes`, `Post--traumatic stress disorder`.
 
 </div>
 
