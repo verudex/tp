@@ -32,6 +32,7 @@ You can reach us at the email `doctorwho[at]comp.nus.edu.sg`
 <img src="images/verudex.png" width="200px">
 
 [[github](https://github.com/verudex)]
+[[portfolio](team/verudex.md)]
 
 * Role: Scheduling and tracking
 * Responsibilities: Defining, assigning, and tracking project tasks
@@ -42,7 +43,7 @@ You can reach us at the email `doctorwho[at]comp.nus.edu.sg`
 <img src="images/kenokk3003.png" width="200px">
 
 [[github](http://github.com/KenOKK3003)]
-[[portfolio](team/KenOKK3003.md)]
+[[portfolio](team/kenokk3003.md)]
 
 * Role: Code Quality Lead
 * Responsibilities: Ensures code quality is met at all stages of coding.
