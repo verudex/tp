@@ -84,7 +84,7 @@ The UI consists of a `MainWindow` that is made up of parts e.g., `CommandBox`, `
 `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures
 the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2526S2-CS2103T-F10-1/tp/tree/master/src/main/java/doctorwho/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2526S2-CS2103T-F10-1/tp/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFX UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2526S2-CS2103T-F10-1/tp/tree/master/src/main/java/doctorwho/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2526S2-CS2103T-F10-1/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -344,7 +344,7 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 | `**`     | less tech-savvy Admin Staff | have the program working immediately after opening     | avoid having to install or configure anything                     |
 | `**`     | clumsy Admin Staff          | edit an existing patient's record                      | keep my database updated to the newest information                |
 | `**`     | Admin Staff                 | filter appointments by a specific date                 | see the doctor's schedule for that day                            |
-| `**`     | Admin Staff                 | add a patient's drug allergis and medical conditions   | help the doctor provide informed care                             |
+| `**`     | Admin Staff                 | add a patient's drug allergies and medical conditions   | help the doctor provide informed care                             |
 | `**`     | less tech-savvy Admin Staff | have a data file automatically created on first launch | start using the system without manual setup                       |
 | `**`     | Admin Staff                 | clear all patient records                              | start fresh with a clean database                                 |
 | `**`     | Admin Staff                 | be alerted if I book two appointments at the same time | avoid double-booking the doctor                                   |
@@ -513,7 +513,7 @@ The use cases operate with the following implicit preconditions, in addition to 
       Use case ends.
 
 * 1e. New appointment is identical to the current appointment of the selected patient (i.e., start time, duration, and note are identical).
-    * 1e1. DoctorWho shoes an error message.
+    * 1e1. DoctorWho shows an error message.
 
       Use case ends.
 
@@ -840,7 +840,7 @@ Team size: 5
    implement a best-effort check that will flag possible mismatches.
 3. **Include confirmation for the `clear` command** to protect the user from unintentionally clearing all their data. We
    plan to make it so that the user has to enter two consecutive clear commands before the data is actually cleared.
-4. **Tracking of a patient's appointment history.** Currently, we allow tha addition of appointments on past dates but
+4. **Tracking of a patient's appointment history.** Currently, we allow the addition of appointments on past dates but
    only support one active appointment per patient. This is due to how small clinics operate whereby the follow-up
    appointment is made only once the user completes their current appointment. We plan to let multiple appointments be
    linked to a patient that way past appointments can be traced back to the patient. This will also allow a user
