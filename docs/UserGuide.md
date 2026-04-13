@@ -125,7 +125,7 @@ can be found in [Features](#features).
 
 Shows a message explaining how to access the help page.
 
-<img src="images/helpMessageWindows.png" width="750" alt="Help Window">
+<img src="images/helpMessage.png" width="750" alt="Help Window">
 
 Format: `help`
 
