@@ -10,11 +10,8 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* AddressBook-Level3 (AB3): The original source code for this application was adapted from the
-  [AddressBook-Level3](https://github.com/se-edu/addressbook-level3)
-  project created by the SE-EDU initiative.
-* NRIC Checksum: Introduce documentation for NRIC
-  checksum. [Link](https://userapps.support.sap.com/sap/support/knowledge/en/2572734)
+* AddressBook-Level3 (AB3): The original source code for this application was adapted from the [AddressBook-Level3](https://github.com/se-edu/addressbook-level3) project created by the SE-EDU initiative.
+* NRIC Checksum: Introduce documentation for NRIC checksum. [Link](https://userapps.support.sap.com/sap/support/knowledge/en/2572734)
 * JavaFX: Used for the Graphical User Interface (GUI). [Link](https://openjfx.io/)
 * JUnit5: Used for the unit testing framework. [Link](https://junit.org/junit5/)
 * PlantUML: Used to generate the diagrams in this documentation. [Link](https://plantuml.com/)
@@ -30,13 +27,6 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ## **Design**
 
-<div markdown="span" class="alert alert-primary">
-
-:bulb: **Tip:** The `.puml` files used to create diagrams are in this document `docs/diagrams` folder. Refer to the [
-_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create
-and edit diagrams.
-</div>
-
 ### Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
@@ -47,9 +37,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** (consisting of classes [
-`Main`](https://github.com/AY2526S2-CS2103T-F10-1/tp/tree/master/src/main/java/doctorwho/Main.java) and [
-`MainApp`](https://github.com/AY2526S2-CS2103T-F10-1/tp/tree/master/src/main/java/doctorwho/MainApp.java)) is in
+**`Main`** (consisting of classes [`Main`](https://github.com/AY2526S2-CS2103T-F10-1/tp/tree/master/src/main/java/doctorwho/Main.java) and [`MainApp`](https://github.com/AY2526S2-CS2103T-F10-1/tp/tree/master/src/main/java/doctorwho/MainApp.java)) is in
 charge of the app launch and shut down.
 
 * At app launch, it initializes the other components in the correct sequence, and connects them up with each other.
@@ -88,20 +76,15 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [
-`Ui.java`](https://github.com/AY2526S2-CS2103T-F10-1/tp/tree/master/src/main/java/doctorwho/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2526S2-CS2103T-F10-1/tp/tree/master/src/main/java/doctorwho/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PatientListPanel`,
+The UI consists of a `MainWindow` that is made up of parts e.g., `CommandBox`, `ResultDisplay`, `PatientListPanel`,
 `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures
 the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that
-are in the `src/main/resources/view` folder. For example, the layout of the [
-`MainWindow`](https://github.com/AY2526S2-CS2103T-F10-1/tp/tree/master/src/main/java/doctorwho/ui/MainWindow.java)
-is specified in [
-`MainWindow.fxml`](https://github.com/AY2526S2-CS2103T-F10-1/tp/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFX UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2526S2-CS2103T-F10-1/tp/tree/master/src/main/java/doctorwho/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2526S2-CS2103T-F10-1/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -112,8 +95,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [
-`Logic.java`](https://github.com/AY2526S2-CS2103T-F10-1/tp/tree/master/src/main/java/doctorwho/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2526S2-CS2103T-F10-1/tp/tree/master/src/main/java/doctorwho/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -133,7 +115,7 @@ How the `Logic` component works:
    a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
 2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which
    is executed by the `LogicManager`.
-3. The command can communicate with the `Model` when it is executed (e.g. to delete a patient).<br>
+3. The command can communicate with the `Model` when it is executed (e.g., to delete a patient).<br>
    Note that although this is shown as a single step in the diagram above (for simplicity), in the code it can take
    several interactions (between the command object and the `Model`) to achieve.
 4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
@@ -153,8 +135,7 @@ How the parsing works:
 
 ### Model component
 
-**API** : [
-`Model.java`](https://github.com/AY2526S2-CS2103T-F10-1/tp/tree/master/src/main/java/doctorwho/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2526S2-CS2103T-F10-1/tp/tree/master/src/main/java/doctorwho/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="800" />
 
@@ -163,7 +144,7 @@ The `Model` component,
 
 * stores the address book data i.e., all `Patient` objects (which are contained in a `UniquePatientList` object).
 * stores the currently 'selected' `Patient` objects (e.g., results of a search query) as a separate _filtered_ list
-  which is exposed to outsiders as an unmodifiable `ObservableList<Patient>` that can be 'observed' e.g. the UI can be
+  which is exposed to outsiders as an unmodifiable `ObservableList<Patient>` that can be 'observed' e.g., the UI can be
   bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a
   `ReadOnlyUserPref` objects.
@@ -178,8 +159,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [
-`Storage.java`](https://github.com/AY2526S2-CS2103T-F10-1/tp/tree/master/src/main/java/doctorwho/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2526S2-CS2103T-F10-1/tp/tree/master/src/main/java/doctorwho/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -239,17 +219,17 @@ For an NRIC/FIN value with prefix `P`, digits `d1..d7`, and suffix letter `L`:
     * `F/G -> KLMNPQRTUWX`
     * `M   -> KLJNPQRTUWX`
 
-NRIC is valid only if computed suffix letter equals `L`.
+NRIC is valid only if the computed suffix letter equals the provided letter `L`.
 
 #### Design considerations
 
 **Aspect: location of checksum logic**
 
-* **Alternative 1 (chosen):** keep checksum logic in `Nric`.
+***Alternative 1 (chosen):** keep checksum logic in `Nric`.
     * Pros: one validation implementation across parser, model, and storage.
     * Cons: parser tests must use checksum-valid NRIC fixtures.
 
-* **Alternative 2:** validate in parser only.
+***Alternative 2:** validate in parser only.
     * Pros: simpler parser flow.
     * Cons: invalid values could still enter through storage or future non-parser paths.
 
@@ -300,23 +280,23 @@ upon launching the application or while it is running.
 
 **Aspect: trigger mechanism for reminder refresh**
 
-* **Alternative 1 (chosen):** hybrid trigger (`Model` change events + periodic refresh).
+***Alternative 1 (chosen):** hybrid trigger (`Model` change events + periodic refresh).
     * Pros: reminders stay up to date after command execution and remain accurate as time passes.
     * Pros: avoids heavy continuous polling while app is idle.
     * Cons: requires careful scheduling/lifecycle management to avoid duplicate refreshes.
 
-* **Alternative 2:** fixed-interval polling only.
+***Alternative 2:** fixed-interval polling only.
     * Pros: simpler implementation model.
     * Cons: can introduce stale reminders between poll intervals or unnecessary background work.
 
 **Aspect: reminder presentation strategy**
 
-* **Alternative 1 (chosen):** non-blocking reminder panel with optional visual markers.
+***Alternative 1 (chosen):** non-blocking reminder panel with optional visual markers.
     * Pros: supports continuous workflow without forcing modal interactions.
     * Pros: allows users to review reminders alongside patient data.
     * Cons: reminders may be less noticeable if users ignore side panels.
 
-* **Alternative 2:** modal pop-up alerts.
+***Alternative 2:** modal pop-up alerts.
     * Pros: high visibility for urgent reminders.
     * Cons: interrupts command flow and can be intrusive when multiple reminders are due.
 
@@ -338,7 +318,7 @@ upon launching the application or while it is running.
 
 **Target user profile**:
 
-* has a need to manage a significant number of patient contacts, and appointments.
+* has a need to manage a significant number of patient contacts and appointments
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
@@ -350,46 +330,28 @@ faster than a typical mouse/GUI driven app
 
 ### User stories
 
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikely to have) - `*`
 
-| Priority | As an ...   | I want to ...                                                                          | So that I can ...                                                                        |
-|:---------|:------------|:---------------------------------------------------------------------------------------|:-----------------------------------------------------------------------------------------|
-| `* * *`  | Admin Staff | add a patient's medical condition                                                      | help the doctor provide informed care                                                    |
-| `* * *`  | Admin Staff | add an appointment date to a patient                                                   | track the doctor's daily schedule                                                        |
-| `* * *`  | Admin Staff | delete a patient record                                                                | keep my database clean of inactive patients                                              |
-| `* * *`  | Admin Staff | have a data file automatically created on first launch                                 | start using the system without manual setup                                              |
-| `* * *`  | Admin Staff | see sample patient data on first launch                                                | understand what the app looks like in use                                                |
-| `* * *`  | Admin Staff | list all patients                                                                      | see all the doctor's patients at a glance                                                |
-| `* * *`  | Admin Staff | find a patient by name                                                                 | quickly locate a specific patient's record                                               |
-| `* * *`  | Admin Staff | delete a patient's appointment                                                         | remove outdated or cancelled appointments                                                |
-| `* * *`  | Admin Staff | list all appointments                                                                  | view the doctor's full schedule at a glance                                              |
-| `* * *`  | Admin Staff | filter appointments by a specific date                                                 | see the doctor's schedule for that day                                                   |
-| `* * *`  | Admin Staff | add a patient's allergy                                                                | ensure that the doctor avoids prescribing harmful medication                             |
-| `* * *`  | Admin Staff | add a new patient record                                                               | keep track of new patients                                                               |
-| `* * *`  | Admin Staff | have my data automatically loaded on startup                                           | continue work across sessions                                                            |
-| `* * *`  | Admin Staff | receive a clear error message and correction technique when I enter an invalid command | fix my command                                                                           |
-| `* * *`  | Admin Staff | have the program working immediately after opening                                     | avoid having to install or configure anything                                            |
-| `* * *`  | Admin Staff | access the user guide via the help command                                             | know what actions are possible                                                           |
-| `* * *`  | Admin Staff | edit an existing patient's record                                                      | keep my database updated to the newest information                                       |
-| `* * *`  | Admin Staff | be alerted if I book two appointments at the same time                                 | avoid double-booking the doctor                                                          |
-| `* * *`  | Admin Staff | be told when a search returns no results                                               | know the system is working correctly                                                     |
-| `* * *`  | Admin Staff | exit the application                                                                   | close the app when done                                                                  |
-| `* * *`  | Admin Staff | clear all patient records                                                              | start fresh with a clean database                                                        |
-| `* * *`  | Admin Staff | add notes to an appointment                                                            | help the doctor remember important details for the visit                                 |
-| `* *`    | Admin Staff | tag a patient with 'High Risk'                                                         | help the doctor be extra cautious when reviewing their file                              |
-| `* *`    | Admin Staff | mark an allergy as "Severe"                                                            | ensure the doctor sees the patient profile stand out visually                            |
-| `* *`    | Admin Staff | be warned before permanently deleting a patient record                                 | avoid losing data accidentally                                                           |
-| `* *`    | Admin Staff | input command arguments in any order                                                   | avoid memorising rigid syntax                                                            |
-| `* *`    | Admin Staff | record a patient's blood type                                                          | help the doctor provide it quickly in an emergency                                       |
-| `*`      | Admin Staff | list all patients with a specific allergy                                              | ensure the doctor avoids prescribing dangerous medication during an outbreak or shortage |
-| `*`      | Admin Staff | search for a patient by a partial or misspelled name                                   | find records quickly even if I don't remember the exact spelling                         |
-| `*`      | Admin Staff | use command aliases (e.g., a for add)                                                  | minimize typing time while talking to a patient                                          |
-| `*`      | Admin Staff | list all patients taking a specific medication                                         | contact them if that drug is recalled                                                    |
-| `*`      | Admin Staff | add a "Next Checkup" date                                                              | follow up on chronic condition progress                                                  |
-| `*`      | Admin Staff | scrub "soft deleted" data permanently                                                  | comply with "right to be forgotten" regulations                                          |
-| `*`      | Admin Staff | link related patients                                                                  | ensure that the doctor can review hereditary patterns                                    |
-| `*`      | Admin Staff | attach external specialist notes                                                       | ensure that the doctor sees a full care picture                                          |
-| `*`      | Admin Staff | chain commands together                                                                | add a patient and their first appointment in one line                                    |
+| Priority | As an ...                   | I want to ...                                          | So that I can ...                                                 |
+|:---------|:----------------------------|:-------------------------------------------------------|:------------------------------------------------------------------|
+| `***`    | Admin Staff                 | add a new patient record                               | keep track of new patients                                        |
+| `***`    | Admin Staff                 | delete a patient record                                | keep my database clean of inactive patients                       |
+| `***`    | Admin Staff                 | list all patients                                      | see all the doctor's patients at a glance                         |
+| `***`    | Admin Staff                 | find a patient by name                                 | quickly locate a specific patient's record                        |
+| `***`    | Admin Staff                 | add an appointment to a patient                        | track the doctor's daily schedule                                 |
+| `***`    | Admin Staff                 | delete a patient's appointment                         | remove outdated or cancelled appointments                         |
+| `***`    | Admin Staff                 | list all appointments                                  | view the doctor's full schedule at a glance                       |
+| `**`     | less tech-savvy Admin Staff | have the program working immediately after opening     | avoid having to install or configure anything                     |
+| `**`     | clumsy Admin Staff          | edit an existing patient's record                      | keep my database updated to the newest information                |
+| `**`     | Admin Staff                 | filter appointments by a specific date                 | see the doctor's schedule for that day                            |
+| `**`     | Admin Staff                 | add a patient's drug allergies and medical conditions   | help the doctor provide informed care                             |
+| `**`     | less tech-savvy Admin Staff | have a data file automatically created on first launch | start using the system without manual setup                       |
+| `**`     | Admin Staff                 | clear all patient records                              | start fresh with a clean database                                 |
+| `**`     | Admin Staff                 | be alerted if I book two appointments at the same time | avoid double-booking the doctor                                   |
+| `**`     | forgetful Admin Staff       | search for a patient by a partial or misspelled name   | find records quickly even if I do not remember the exact spelling |
+| `*`      | meticulous Admin Staff      | add notes to an appointment                            | help the doctor remember important details for the visit          |
+| `*`      | Admin Staff                 | be told when a search returns no results               | know the system is working correctly                              |
+| `*`      | forgetful Admin Staff       | input command arguments in any order                   | avoid memorising rigid syntax                                     |
 
 ### Use cases
 
@@ -540,7 +502,7 @@ The use cases operate with the following implicit preconditions, in addition to 
 
       Use case ends.
 
-* 1c. Invalid field values (e.g. invalid datetime format or duration out of range).
+* 1c. Invalid field values (e.g., invalid datetime format or duration out of range).
     * 1c1. DoctorWho shows an error message.
 
       Use case ends.
@@ -551,7 +513,7 @@ The use cases operate with the following implicit preconditions, in addition to 
       Use case ends.
 
 * 1e. New appointment is identical to the current appointment of the selected patient (i.e., start time, duration, and note are identical).
-    * 1e1. DoctorWho shoes an error message.
+    * 1e1. DoctorWho shows an error message.
 
       Use case ends.
 
@@ -688,44 +650,19 @@ The use cases operate with the following implicit preconditions, in addition to 
    patient) faster than an equivalent GUI.
 4. Data must be saved locally in a human-readable JSON format to allow for manual inspection or external backup without
    using the app.
-5. The system should handle corrupted data files by notifying the user and failing gracefully rather than crashing.
+5. The system should handle corrupted data files gracefully by notifying the user via a log message, ensuring continued operation without crashing, the corrupted file should not be overridden immediately to give the user a chance to rectify the issue.
 6. The system shall support full operation of all core application features in an offline environment without dependency 
    on external servers or internet connectivity. Non-core features (e.g., external help resources or documentation
    links) may require internet access.
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, macOS. (Relevant to *Setting up*)
-* **GUI (Graphical User Interface)**: A visual interface that allows users to interact with the software through
-  graphical elements like windows, buttons, and icons. (Relevant to *Architecture/UI*)
-* **CLI (Command Line Interface)**: A text-based interface where the user provides input by typing commands. (Relevant
-  to *Architecture/Logic*)
-* **JavaFX**: The software platform and graphical library used to build the DoctorWho desktop interface. (Relevant to
-  *UI Component*)
-* **Prefix**: A short identifier followed by a forward slash (_e.g._ `n/` for name, `ic/` for NRIC) used to define
-  arguments in a command.
-* **Prefix-based Matching**: A parsing technique where data fields are identified by short leading characters (e.g.,
-  `n/` for Name) rather than by their position in a sequence. (Relevant to *Logic Component*)
-* **Medical Tag**: A general term encompassing both **Conditions** (_e.g._ Diabetes) and **Allergies** (_e.g._
+***Mainstream OS**: Windows, Linux, Unix, macOS. (Relevant to *Setting up*)
+***Medical Tag**: A general term encompassing both **Medical Conditions** (_e.g._ Diabetes) and **Drug Allergies** (_e.g.,_
   Penicillin). (Relevant to *Model Component*)
-* **JSON**: JavaScript Object Notation, a text-based interchange data format, for storing or transmitting data. (
-  Relevant to *Storage Component*)
-* **CRUD**: An acronym for Create, Read, Update, and Delete—the four basic functions of persistent storage. (Relevant to
-  *Implementation*)
-* **MVP**: Minimum Viable Product; the core set of features required to make the app functional for Dr. Lee. (Relevant
-  to *Appendix: Requirements*)
-* **Private contact detail**: A contact detail that is not meant to be shared with others. (Relevant to *User Stories*)
-* **Index**: A positive integer representing the position of an item in the currently displayed list in the UI. (
-  Relevant to *Use Cases*)
-* **Overlap**: A situation where a new appointment's time interval (start time + duration) intersects with an existing
+***Overlap**: A situation where a new appointment's time interval (start time + duration) intersects with an existing
   appointment's interval. (Relevant to *Use Cases*)
-* **ISO 8601**: The international standard for the representation of dates and times (_e.g._ `YYYY-MM-DD`). (Relevant to
-  *Use Cases/NFRs*)
-* **NFR (Non-Functional Requirement)**: A requirement that specifies criteria that can be used to judge the operation of
-  a system, rather than specific behaviors (_e.g._ security, reliability). (Relevant to *NFR Section*)
-* **Scalability**: The measure of the system's ability to handle a growing amount of data (_e.g._ thousands of patients)
-  without performance degradation. (Relevant to *NFR Section*)
-* **Orphan Schedule**: An appointment record that remains in the system after the associated patient has been deleted.
+***Orphan Schedule**: An appointment record that remains in the system after the associated patient has been deleted.
   DoctorWho prevents this via automated purging. (Relevant to *NFR Section*)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -756,7 +693,7 @@ testers are expected to do more *exploratory* testing.
 ### Adding a patient
 
 1. Adding a valid patient
-    1. Test case: `add n/John Doe ic/S9876543C x/M dob/01-01-2000 p/98765432 e/johnd@example.com a/123 Clementi Ave`
+    1. Test case: `add n/John Doe ic/T0300000H x/M dob/01-01-2003 p/98765432 e/johnd@example.com a/123 Clementi Ave`
 
        Expected: Patient added at the bottom of the list. Success message shown with patient name.
 
@@ -766,8 +703,8 @@ testers are expected to do more *exploratory* testing.
        Expected: No patient added. Error message shown with correct command format.
 
 3. Adding a duplicate patient
-    1. Prerequisites: Patient `John Doe` with NRIC `S9876543C` already exists (added in test case 1).
-    2. Test case: `add n/John Doe ic/S9876543C x/M dob/01-01-2000 p/98765432 e/johnd@example.com a/123 Clementi Ave`
+    1. Prerequisites: Patient `John Doe` with NRIC `T0300000H` already exists (added in test case 1).
+    2. Test case: `add n/John Doe ic/T0300000H x/M dob/01-01-2003 p/98765432 e/johnd@example.com a/123 Clementi Ave`
 
        Expected: No patient added. Error message indicating duplicate patient.
 
@@ -799,8 +736,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: At least one patient in the list.
     2. Test case: `edit 1 ic/T1234567J p/98557988 al/ mc/High BP`
 
-   Expected: First patient's NRIC and phone are updated, existing allergies are cleared, and the medical condition "High
-   BP" is added. Success message shown.
+   Expected: First patient's NRIC and phone are updated, existing allergies are cleared, and the medical condition "High BP" is added. Success message shown.
 
 3. Editing a patient's date of birth
     1. Prerequisites: At least one patient in the list.
@@ -888,8 +824,8 @@ testers are expected to do more *exploratory* testing.
     3. Delete a random line in the middle of the file and save.
     4. Re-launch the app.
 
-       Expected: App starts with an empty patient list. Corrupted data file is discarded.
-
+       Expected: App starts with an empty patient list. Log message notifies the user that there was an issue loading the file. Corrupted data file is replaced with a new `doctorwho.json` only if the user makes changes to the empty patient list.
+   
 ## **Appendix: Planned Enhancements**
 
 Team size: 5
@@ -904,7 +840,7 @@ Team size: 5
    implement a best-effort check that will flag possible mismatches.
 3. **Include confirmation for the `clear` command** to protect the user from unintentionally clearing all their data. We
    plan to make it so that the user has to enter two consecutive clear commands before the data is actually cleared.
-4. **Tracking of a patient's appointment history.** Currently, we allow tha addition of appointments on past dates but
+4. **Tracking of a patient's appointment history.** Currently, we allow the addition of appointments on past dates but
    only support one active appointment per patient. This is due to how small clinics operate whereby the follow-up
    appointment is made only once the user completes their current appointment. We plan to let multiple appointments be
    linked to a patient that way past appointments can be traced back to the patient. This will also allow a user
@@ -924,7 +860,7 @@ Team size: 5
 8. **Make email an optional field.** Currently, email is a mandatory field. Since not all patients have an email, this
    forces users to enter placeholder values like `test@example.com` for patients without an email. We plan to make the
    email parameter optional when using the add command, so that
-   `add n/John Doe ic/T0123456H x/M dob/01-01-2000 p/9876ND-base5432 a/123 Clementi Ave`  (without `e/`)   is accepted.
+   `add n/John Doe ic/T0300000H x/M dob/01-01-2003 p/98765432 a/123 Clementi Ave`  (without `e/`)   is accepted.
 9. **Enhance the find command to support AND-based keyword matching.** Currently, the `find` command performs OR-based
    matching, meaning `find James Lee` returns any patient whose name contains either `James` or `Lee`. This can return
    too many unrelated results when the user intends to search for a specific patient. We plan to add toggleable
@@ -940,9 +876,9 @@ all architectural layers.
 
 **Challenges faced**:
 
-- Implementing the `Appointment` entity required changes across Logic, Model, Storage and UI layers simultaneously
+- Implementing the `Appointment` entity required changes across Logic, Model, Storage, and UI layers simultaneously
 - Refactoring the generic `Tag` class into two specialised subclasses (`Allergy` and `Condition`) with separate
-  validation rules, character limits and regex patterns required careful design to maintain extensibility
+  validation rules, character limits, and regex patterns required careful design to maintain extensibility
 - Implementing overlap detection across all patients' appointments required non-trivial logic in the Model layer
 - Updating the UI to include a dedicated `PatientDetailPanel` alongside the existing list panel required significant
   JavaFX work
