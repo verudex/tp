@@ -670,7 +670,7 @@ The use cases operate with the following implicit preconditions, in addition to 
    patient) faster than an equivalent GUI.
 4. Data must be saved locally in a human-readable JSON format to allow for manual inspection or external backup without
    using the app.
-5. The system should handle corrupted data files by notifying the user and failing gracefully rather than crashing.
+5. The system should handle corrupted data files gracefully by notifying the user via a log message, ensuring continued operation without crashing, the corrupted file should not be overridden immediately to give the user a chance to rectify the issue.
 6. The system shall support full operation of all core application features in an offline environment without dependency 
    on external servers or internet connectivity. Non-core features (e.g., external help resources or documentation
    links) may require internet access.
@@ -868,7 +868,7 @@ testers are expected to do more *exploratory* testing.
     3. Delete a random line in the middle of the file and save.
     4. Re-launch the app.
 
-       Expected: App starts with an empty patient list. Corrupted data file is discarded.
+       Expected: App starts with an empty patient list. Log message notifies the user that there was an issue loading the file. Corrupted data file is replaced with a new `doctorwho.json` only if the user makes changes to the empty patient list.
    
 ## **Appendix: Planned Enhancements**
 
